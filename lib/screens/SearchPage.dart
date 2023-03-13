@@ -1,0 +1,169 @@
+import 'package:diploma_work/widgets/foregroundWidget.dart';
+import 'package:diploma_work/widgets/searchPanel.dart';
+import 'package:flutter/material.dart';
+import 'package:diploma_work/widgets/BottomNavBar.dart';
+
+class SearchPage extends StatefulWidget {
+  const SearchPage({super.key});
+
+  @override
+  State<SearchPage> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        color: Colors.white,
+        child: ListView(
+          children: [
+            Column(
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(20),
+                      child: CircleAvatar(
+                        radius: 20,
+                        backgroundImage: AssetImage('images/emoji.png'),
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Hello Amir!',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontWeight: FontWeight.normal),
+                        ),
+                        Text(
+                          'Thursday, 08 January',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 170,
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: Image.asset('images/bell.png'),
+                      ),
+                    )
+                  ],
+                ),
+                searchPanel(),
+                SizedBox(height: 20),
+                Row(
+                  children: [
+                    Container(
+                        margin: EdgeInsets.only(left: 20, right: 20),
+                        child: Image.asset('images/Map.png')),
+                    Text(
+                      'На карте',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Divider(
+                  color: Colors.black,
+                  thickness: 1,
+                  endIndent: 20,
+                  indent: 20,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 20),
+                      child: Image.asset('images/favorites.png'),
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Text(
+                      'По залам и занятиям',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Divider(
+                  color: Colors.black,
+                  thickness: 1,
+                  endIndent: 20,
+                  indent: 20,
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 20, top: 10, bottom: 5),
+                      child: Image.asset('images/videos.png'),
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Text(
+                      'Полезные видео',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Divider(
+                  color: Colors.black,
+                  thickness: 1,
+                  endIndent: 20,
+                  indent: 20,
+                ),
+                SizedBox(height: 20),
+                Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 20),
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Партнерские площадки',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Image.asset('images/check.png'),
+                  ],
+                ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    children: [
+                      for (int i=1; i<6; i++)
+                      foregroundWidget(),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomNavBar(),
+    );
+  }
+}
