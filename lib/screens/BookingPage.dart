@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:diploma_work/screens/BookingDialog.dart';
+import 'package:diploma_work/widgets/foregroundWidget.dart';
+
 
 class BookingPage extends StatelessWidget {
-  const BookingPage({super.key});
+
+
+  final FirebaseData firebaseData;
+  BookingPage({required this.firebaseData});
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +26,8 @@ class BookingPage extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10)),
-                    child: Image.asset(
-                      'images/foreground.jpg',
+                    child: Image.network(
+                      firebaseData.image,
                       width: 300,
                     ),
                   ),
@@ -29,7 +36,7 @@ class BookingPage extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  'Центр Восхождения \n        поле №10',
+                  firebaseData.name,
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -50,7 +57,7 @@ class BookingPage extends StatelessWidget {
                       width: 5,
                     ),
                     Text(
-                      'Алмалинский район, улица Шагабудтинова 45',
+                      firebaseData.location,
                       style: TextStyle(
                           fontSize: 12, color: Colors.black.withOpacity(0.5)),
                     ),
@@ -74,14 +81,14 @@ class BookingPage extends StatelessWidget {
                             width: 5,
                           ),
                           Text(
-                            'Кол-во игроков',
+                            'Количество игроков',
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.black.withOpacity(0.5)),
                           ),
                           Spacer(),
                           Text(
-                            '22',
+                            firebaseData.playersQuantity,
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.black.withOpacity(0.5)),
@@ -109,7 +116,7 @@ class BookingPage extends StatelessWidget {
                           ),
                           Spacer(),
                           Text(
-                            'Искуственная трава',
+                            firebaseData.coatingType,
                             style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.black.withOpacity(0.5)),
@@ -132,31 +139,46 @@ class BookingPage extends StatelessWidget {
                                     color: Colors.black),
                               ),
                             ),
-                            SizedBox(height: 10,),
-                            Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus in orci et auctor. In ac posuere urna, vitae placerat felis. Sed varius semper odio non tempus. Integer pharetra massa a lorem ultricies tempor. Mauris egestas dapibus purus vitae fringilla. Vivamus a erat bibendum, hendrerit risus quis, consequat ex. Phasellus ac rhoncus eros. Suspendisse diam turpis, fringilla a arcu ac, blandit ullamcorper nibh. Mauris at erat non arcu aliquet accumsan. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.", style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal, color: Colors.black),),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              firebaseData.description,
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black),
+                            ),
                           ],
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Color(0xFF646AFF),
-              ),
-              width: 340,
-              height: 40,
-              child: Center(
-                  child: Text(
-                'Выбрать дату',
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              )),
-            ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Color(0xFF646AFF),
+                  ),
+                  width: 340,
+                  height: 40,
+                  child: ElevatedButton(
+                    onPressed: (){
+                      showDialog(context: context, builder: (context)=> const BookingDialog());
+                    },
+                    child: Center(
+                        child: Text(
+                          'Выбрать дату',
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        )),
+                  ),
+                ),
               ],
             ),
           )
@@ -165,3 +187,4 @@ class BookingPage extends StatelessWidget {
     );
   }
 }
+
