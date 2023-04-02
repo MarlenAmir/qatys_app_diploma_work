@@ -1,3 +1,5 @@
+import 'package:diploma_work/screens/MapPage.dart';
+import 'package:diploma_work/screens/VideoPage.dart';
 import 'package:diploma_work/widgets/foregroundWidget.dart';
 import 'package:diploma_work/widgets/searchPanel.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +13,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  final TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,19 +65,26 @@ class _SearchPageState extends State<SearchPage> {
                     )
                   ],
                 ),
-                searchPanel(),
+                searchPanel(searchController: searchController,),
                 SizedBox(height: 20),
-                Row(
-                  children: [
-                    Container(
-                        margin: EdgeInsets.only(left: 20, right: 20),
-                        child: Image.asset('images/Map.png')),
-                    Text(
-                      'На карте',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                  ],
+                InkWell(
+                  onTap: (){
+                    Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => MapPage()));
+                  },
+                  child: Row(
+                    children: [
+                      Container(
+                          margin: EdgeInsets.only(left: 20, right: 20),
+                          child: Image.asset('images/Map.png')),
+                      Text(
+                        'На карте',
+                        style:
+                            TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
                 ),
                 Divider(
                   color: Colors.black,
@@ -104,24 +114,31 @@ class _SearchPageState extends State<SearchPage> {
                   endIndent: 20,
                   indent: 20,
                 ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 20, top: 10, bottom: 5),
-                      child: Image.asset('images/videos.png'),
-                    ),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text(
-                      'Полезные видео',
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                  ],
+                InkWell(
+                  onTap: (){
+                    Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => VideoPage()));
+                  },
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 20, top: 10, bottom: 5),
+                        child: Image.asset('images/videos.png'),
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Text(
+                        'Полезные видео',
+                        style:
+                            TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
                 ),
                 Divider(
                   color: Colors.black,
@@ -152,9 +169,8 @@ class _SearchPageState extends State<SearchPage> {
                 SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: Column(
-                    children: [
-                      for (int i=1; i<6; i++)
-                      foregroundWidget(),
+                    children: [                  
+                      foregroundWidget(searchController: searchController),
                     ],
                   ),
                 )

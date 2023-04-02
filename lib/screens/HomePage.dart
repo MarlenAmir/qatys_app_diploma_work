@@ -8,14 +8,26 @@ import 'package:firebase_auth/firebase_auth.dart';
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  
+
   @override
   State<HomePage> createState() => _HomePage();
 }
 
 class _HomePage extends State<HomePage> {
   final user = FirebaseAuth.instance.currentUser!;
+  final TextEditingController searchController = TextEditingController();
+  
 
- 
+  @override
+  void initState() {
+    searchController.addListener(() { 
+      setState(() {
+        
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +80,7 @@ class _HomePage extends State<HomePage> {
                     )
                   ],
                 ),
-                searchPanel(),
+                searchPanel(searchController: searchController),
                 eventWidget(),
                 SizedBox(
                   height: 20,
@@ -88,7 +100,7 @@ class _HomePage extends State<HomePage> {
                 ),
                 Column(
                   children: [
-                    for (int i = 0; i < 6; i++) foregroundWidget(),
+                    foregroundWidget(searchController: searchController,),
                   ],
                 ),
               ],

@@ -41,6 +41,8 @@ dependencies:
   firebase_auth: ^4.2.9
   email_validator: ^2.1.17
   cloud_firestore: ^4.4.3
+  google_maps_flutter: ^2.2.5
+  video_player: ^2.6.0
     
 
 dev_dependencies:

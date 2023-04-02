@@ -1,5 +1,6 @@
 import 'package:diploma_work/widgets/foregroundWidget.dart';
 import 'package:diploma_work/widgets/searchPanel.dart';
+import 'package:diploma_work/widgets/selectedCategoryForeground.dart';
 import 'package:flutter/material.dart';
 import 'package:diploma_work/widgets/BottomNavBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,7 +18,8 @@ class foregroundsList extends StatefulWidget {
 }
 
 class _foregroundsListState extends State<foregroundsList> {
-
+  
+  final TextEditingController searchController = TextEditingController();
   final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
@@ -70,8 +72,8 @@ class _foregroundsListState extends State<foregroundsList> {
                     )
                   ],
                 ),
-                searchPanel(),
-                foregroundWidget(),
+                searchPanel(searchController : searchController),
+                selectedCategoryForeground(),
               ],
             )
           ],
