@@ -105,4 +105,3 @@ class _eventWidgetState extends State<eventWidget> {
   }
 }
 
-

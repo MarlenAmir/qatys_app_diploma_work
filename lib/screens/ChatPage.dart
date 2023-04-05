@@ -1,5 +1,7 @@
 import 'package:diploma_work/widgets/BottomNavBar.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ChatPage extends StatelessWidget {
   const ChatPage({super.key});
@@ -37,7 +39,7 @@ class ChatPage extends StatelessWidget {
                             ),
                             Text(
                               'Айгерим, служба поддержки',
-                              style: TextStyle(
+                              style: GoogleFonts.montserrat(
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black),
@@ -47,7 +49,7 @@ class ChatPage extends StatelessWidget {
                             ),
                             Text(
                               'Работаем для вас каждый день \n               с 9:00 до 22:00',
-                              style: TextStyle(
+                              style: GoogleFonts.montserrat(
                                   fontSize: 12,
                                   fontWeight: FontWeight.normal,
                                   color: Colors.black.withOpacity(0.5)),
@@ -57,7 +59,7 @@ class ChatPage extends StatelessWidget {
                             ),
                             Text(
                               'Выберите удобный способ для \n           связи с нами',
-                              style: TextStyle(
+                              style: GoogleFonts.montserrat(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black),
@@ -70,17 +72,25 @@ class ChatPage extends StatelessWidget {
                               children: [
                                 Column(
                                   children: [
-                                    CircleAvatar(
-                                        radius: 30,
-                                        backgroundImage:
-                                            AssetImage('images/telegram.jpg'),
-                                        backgroundColor: Colors.amberAccent),
+                                    InkWell(
+                                      onTap: () {
+                                        String username = 'Marlen7'; // Replace with the username of the Telegram user you want to chat with
+
+                                        String url = 'https://t.me/$username';
+                                        launchUrl(Uri.parse(url));
+                                      },
+                                      child: CircleAvatar(
+                                          radius: 30,
+                                          backgroundImage:
+                                              AssetImage('images/telegram.jpg'),
+                                          backgroundColor: Colors.amberAccent),
+                                    ),
                                     SizedBox(
                                       height: 10,
                                     ),
                                     Text(
                                       'Telegram',
-                                      style: TextStyle(
+                                      style: GoogleFonts.montserrat(
                                           fontSize: 12,
                                           fontWeight: FontWeight.normal,
                                           color: Colors.black.withOpacity(0.5)),
@@ -92,19 +102,31 @@ class ChatPage extends StatelessWidget {
                                 ),
                                 Column(
                                   children: [
-                                    CircleAvatar(
-                                      radius: 40,
-                                      backgroundImage:
-                                          AssetImage('images/whatsapp.png'),
-                                      backgroundColor:
-                                          Colors.white.withOpacity(0.1),
+                                    InkWell(
+                                      onTap: () {
+                                        String phoneNumber =
+                                            '87755296850'; // Replace with the phone number you want to chat with
+                                        String message =
+                                            'Привет, у меня вопрос'; // Replace with the message you want to send
+
+                                        String url =
+                                            'https://wa.me/$phoneNumber/?text=${Uri.parse(message)}';
+                                        launchUrl(Uri.parse(url));
+                                      },
+                                      child: CircleAvatar(
+                                        radius: 40,
+                                        backgroundImage:
+                                            AssetImage('images/whatsapp.png'),
+                                        backgroundColor:
+                                            Colors.white.withOpacity(0.1),
+                                      ),
                                     ),
                                     SizedBox(
                                       height: 10,
                                     ),
                                     Text(
                                       'Whatsapp',
-                                      style: TextStyle(
+                                      style: GoogleFonts.montserrat(
                                           fontSize: 12,
                                           fontWeight: FontWeight.normal,
                                           color: Colors.black.withOpacity(0.5)),

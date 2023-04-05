@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:diploma_work/widgets/searchPanel.dart';
 import 'package:diploma_work/widgets/BottomNavBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -52,14 +54,14 @@ class _HomePage extends State<HomePage> {
                       children: [
                         Text(
                           user.email!,
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                               color: Colors.black,
                               fontSize: 12,
                               fontWeight: FontWeight.normal),
                         ),
                         Text(
-                          'Thursday, 08 January',
-                          style: TextStyle(
+                          'Вторник, 04 Апреля',
+                          style: GoogleFonts.montserrat(
                               color: Colors.black,
                               fontSize: 12,
                               fontWeight: FontWeight.bold),
@@ -67,7 +69,7 @@ class _HomePage extends State<HomePage> {
                       ],
                     ),
                     SizedBox(
-                      width: 170,
+                      width: 120,
                     ),
                     GestureDetector(
                       onTap: () {},
@@ -90,13 +92,13 @@ class _HomePage extends State<HomePage> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       'Популярные',
-                      style: TextStyle(
+                      style: GoogleFonts.montserrat(
                           color: Colors.black,
                           fontSize: 16,
                           fontWeight: FontWeight.normal),
                     )),
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Column(
                   children: [

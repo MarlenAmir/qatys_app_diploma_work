@@ -1,6 +1,11 @@
+import 'package:diploma_work/screens/BookinPageFromMap.dart';
+import 'package:diploma_work/screens/BookingPage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:location/location.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class MapPage extends StatefulWidget {
   @override
@@ -8,11 +13,40 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  late GoogleMapController _mapController;
+  late GoogleMapController mapController;
+  late LocationData _currentLocation;
 
-  List<Marker> _markers = [];
+  void _getUserLocation() async {
+    Location location = Location();
 
-  static final CameraPosition _initialPosition = CameraPosition(
+    bool _serviceEnabled;
+    PermissionStatus _permissionGranted;
+
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    LocationData currentLocation = await location.getLocation();
+    setState(() {
+      _currentLocation = currentLocation;
+    });
+  }
+
+  List<Marker> markers = [];
+
+  static final CameraPosition initialPosition = CameraPosition(
     target: LatLng(43.238949, 76.889709),
     zoom: 15,
   );
@@ -20,95 +54,76 @@ class _MapPageState extends State<MapPage> {
   @override
   void initState() {
     super.initState();
-    // Получить данные из Firebase и создать маркеры
-    FirebaseFirestore.instance
-        .collection('foregrounds')
-        .get()
-        .then((querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
-        Map<String, dynamic> data = doc.data();
-        String name = data['name'];
-        double latitude = data['latitude'];
-        double longitude = data['longitude'];
-        Marker marker = Marker(
-          markerId: MarkerId(doc.id),
-          position: LatLng(latitude, longitude),
-          infoWindow: InfoWindow(title: name),
-          onTap: () {
-            // Здесь вы можете передать данные в другую страницу, используя Navigator.push()
-          },
-        );
-        _markers.add(marker);
-      });
-      setState(() {});
+    getMarkersFromFirestore();
+  }
+
+  Future<void> getMarkersFromFirestore() async {
+    QuerySnapshot querySnapshot =
+        await FirebaseFirestore.instance.collection('foregrounds').get();
+
+    setState(() {
+      markers = querySnapshot.docs.map((document) {
+        Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+
+        BookingData bookingData = BookingData(
+            image: data['image_url'],
+            name: data['name'],
+            location: data['location'],
+            playersQuantity: data['playersQuantity'],
+            coatingType: data['coatingType'],
+            description: data['description']);
+
+        double latitude = double.parse(data['latitude'] as String);
+        double longitude = double.parse(data['longitude'] as String);
+        String name = data['name'] as String;
+
+        return Marker(
+            markerId: MarkerId(document.id),
+            position: LatLng(latitude, longitude),
+            infoWindow: InfoWindow(title: name),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BookingPageFromMap(
+                    bookingData: bookingData,
+                  ),
+                ),
+              );
+            });
+      }).toList();
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Тренажерные залы')),
       body: GoogleMap(
-        markers: Set<Marker>.from(_markers),
-        initialCameraPosition: _initialPosition,
+        myLocationEnabled: true,
+        markers: Set<Marker>.of(markers),
+        initialCameraPosition: initialPosition,
         onMapCreated: (GoogleMapController controller) {
-          _mapController = controller;
+          mapController = controller;
+          _getUserLocation();
         },
       ),
     );
   }
 }
 
+class BookingData {
+  final String image;
+  final String name;
+  final String location;
+  final String playersQuantity;
+  final String coatingType;
+  final String description;
 
-
-
-  /*late GoogleMapController _mapController;
-
-  final List<Marker> _markers = [
-    Marker(
-      markerId: MarkerId('PFC'),
-      position: LatLng(43.247857, 76.910402),
-      infoWindow: InfoWindow(title: 'PFC'),
-      onTap: (){
-
-      }
-    ),
-    Marker(
-      markerId: MarkerId('Jas Qyran'),
-      position: LatLng(43.229931, 76.910402),
-      infoWindow: InfoWindow(title: 'Jas Qyran'),
-      onTap: (){
-        
-      }
-    ),
-    Marker(
-      markerId: MarkerId('AlmatyArena'),
-      position: LatLng(43.265689, 76.814821),
-      infoWindow: InfoWindow(title: 'AlmatyArena'),
-      onTap: (){
-        Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => BookingPage(firebaseData: ,),));
-      }
-    ),
-  ];
-
-  static final CameraPosition _initialPosition = CameraPosition(
-    target: LatLng(43.238949, 76.889709),
-    zoom: 15,
-  );
-  
-  
-  
-  
-  
-  
-  Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => BookingPage(firebaseData: ,)
-              ),
-            );
-  
-  
-  */
+  BookingData(
+      {required this.image,
+      required this.name,
+      required this.location,
+      required this.playersQuantity,
+      required this.coatingType,
+      required this.description});
+}

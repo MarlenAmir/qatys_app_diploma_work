@@ -6,6 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diploma_work/main.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:diploma_work/utils/utils.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 TextEditingController emailTextInputController = TextEditingController();
 TextEditingController passwordTextInputController = TextEditingController();
@@ -72,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Text(
                   'Добро пожаловать!',
-                  style: TextStyle(
+                  style: GoogleFonts.montserrat(
                       color: Color(0xFF000000),
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
@@ -80,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 5),
                 Text(
                   'Держите ваши данные в безопасности!',
-                  style: TextStyle(color: Color(0xFF9F9F9F), fontSize: 14),
+                  style: GoogleFonts.montserrat(color: Color(0xFF9F9F9F), fontSize: 14),
                 ),
                 SizedBox(height: 10),
                 Container(
@@ -88,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                   margin: EdgeInsets.only(left: 20),
                   child: Text(
                     'Вход',
-                    style: TextStyle(
+                    style: GoogleFonts.montserrat(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF000000)),
@@ -155,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       child: Text(
                         'Вход',
-                        style: TextStyle(
+                        style: GoogleFonts.montserrat(
                             color: Colors.white,
                             fontWeight: FontWeight.normal,
                             fontSize: 20),
@@ -168,7 +170,7 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   child: Text(
                     'Forgot Password?',
-                    style: TextStyle(
+                    style: GoogleFonts.montserrat(
                         color: Color(0xFF7D82FF),
                         fontWeight: FontWeight.bold,
                         fontSize: 16),
@@ -176,7 +178,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Text(
                   'OR',
-                  style: TextStyle(
+                  style: GoogleFonts.montserrat(
                       fontSize: 10,
                       color: Color(0xFF9F9F9F),
                       fontWeight: FontWeight.normal),
@@ -201,7 +203,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         Text(
                           'Login with Google',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                               color: Color(0xFF9F9F9F),
                               fontSize: 20,
                               fontWeight: FontWeight.normal),
@@ -215,7 +217,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Text(
                       'Don' 't' '' 'have an account?',
-                      style: TextStyle(
+                      style: GoogleFonts.montserrat(
                         fontSize: 16,
                         fontWeight: FontWeight.normal,
                         color: Color(0xFF9F9F9F),
@@ -231,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         child: Text(
                           'Register',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                               color: Color(0xFF646AFF),
                               fontSize: 16,
                               fontWeight: FontWeight.bold),

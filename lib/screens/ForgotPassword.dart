@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:diploma_work/utils/utils.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -64,7 +66,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             SizedBox(height: 20),
             Text(
               'Qatys',
-              style: TextStyle(
+              style: GoogleFonts.montserrat(
                   color: Color(0xFFDEC800),
                   fontSize: 36,
                   fontWeight: FontWeight.normal),
@@ -74,7 +76,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             ),
             Text(
               'Добро пожаловать!',
-              style: TextStyle(
+              style: GoogleFonts.montserrat(
                   color: Color(0xFF000000),
                   fontSize: 20,
                   fontWeight: FontWeight.bold),
@@ -82,7 +84,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             SizedBox(height: 5),
             Text(
               'Держите ваши данные в безопасности!',
-              style: TextStyle(color: Color(0xFF9F9F9F), fontSize: 14),
+              style: GoogleFonts.montserrat(color: Color(0xFF9F9F9F), fontSize: 14),
             ),
             SizedBox(height: 10),
             Container(
@@ -90,7 +92,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               margin: EdgeInsets.only(left: 20),
               child: Text(
                 'Восстановить пароль',
-                style: TextStyle(
+                style: GoogleFonts.montserrat(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF000000)),
@@ -131,7 +133,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 },
                 child: Text(
                   'Отправить пароль',
-                  style: TextStyle(
+                  style: GoogleFonts.montserrat(
                       color: Colors.white,
                       fontWeight: FontWeight.normal,
                       fontSize: 20),

@@ -1,131 +1,157 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
+import 'package:diploma_work/widgets/videoList.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class VideoPage extends StatelessWidget {
-  final List<String> videoUrls = [
-    'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
-    'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+
+ final List<String> videoIds = [
+    'yuli9QzU1aI',
+    'MLfaH-lDmdY',
+    'G0QjxTR_XPc',
+    'sNKOh0bRMyk',
+    'NWGXKNwy8pg',
+    'icEfi4MVLVg',
+    '8hjR6jgtqfM',
+    'XkKMZXwh9m8',
+    'GfSzsJIgr1o',
+    'bUCNQqa8p3E',
   ];
 
+  final List<String> videoTitles = ['10 ЛЕГКИХ НАВЫКОВ ОБЫГРАТЬ В ФУТБОЛЕ. Обучение финтам CR7',
+    '5 ПРОСТЫХ ФИНТОВ, ЧТОБЫ УДИВЛЯТЬ ЗАЩИТНИКОВ! Обучение финтам футболистов',
+    'Секрет ИДЕАЛЬНОГО УДАРА с Андреем Тихоновым! ОБУЧЕНИЕ ПЛАССЕРУ',
+    'Обучение сильному удару. КАК БИТЬ ПУШКОЙ? // POWER SHOT TUTORIAL',
+    'Обучение крученому удару | Curve tutorial. Bend it like Beckham',
+    'Обучение эффектным финтам!',
+    'Обучение удару Наклбол | Knuckleball tutorial',
+    'КАК РЕБЁНКУ НАУЧИТЬСЯ БИТЬ ПУШКОЙ?',
+    'НЕ ПОВТОРЯЙ ЭТИ ОШИБКИ В ФУТБОЛЕ.',
+    'Как бить по мячу подъёмом сильно и точно?',];
+
+class VideoPage extends StatefulWidget {
+  @override
+  State<VideoPage> createState() => _VideoPageState();
+}
+
+class _VideoPageState extends State<VideoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-         SizedBox(height: 20,),
-          Container(
-                width: double.infinity,
-                height: 250,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10)),
-                  child: Image.network(
-                    'https://i.ytimg.com/vi/xHejVZ7QUcY/maxresdefault.jpg',
-                    fit: BoxFit.fill,
-                    
+      body: Container(
+        child: ListView(
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 250,
+                  child: ClipRRect(
+                    child: Image.network(
+                      'https://i.ytimg.com/vi/xHejVZ7QUcY/maxresdefault.jpg',
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
-              ),
-          SizedBox(height: 20,),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Text('О Программе', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),),
-              ),
-              SizedBox(height: 10,),
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam urna mauris, lobortis sed enim ac, ultrices tincidunt urna. Vivamus convallis nunc tempor lorem egestas efficitur. Integer eget suscipit urna. Donec eget ante sit amet leo vestibulum congue sed id nulla. Duis cursus lacus vitae congue fermentum. Proin accumsan nisi eu tincidunt venenatis. Duis a vehicula arcu, ut luctus turpis. Proin gravida elit neque, vel ultrices libero gravida id. Suspendisse aliquam a ligula et egestas. Vestibulum lobortis nisi non mi rutrum, id dapibus justo pretium. Suspendisse potenti. Praesent vel blandit nibh. Vestibulum sit amet neque quis magna aliquam cursus. Phasellus dolor quam, blandit sit amet pellentesque ac, venenatis vitae lectus. Integer euismod id lacus eu tempus. Suspendisse lobortis eleifend nunc.', style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.black),),
-              ),
-            ],
-          ),
-          SizedBox(height: 10,),
-          Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: videoUrls.length,
-              itemBuilder: (BuildContext context, int index) {
-                return SingleChildScrollView(
-                 
-                  child: VideoPlayerWidget(videoUrl: videoUrls[index]));
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class VideoPlayerWidget extends StatefulWidget {
-  final String? videoUrl;
-
-  VideoPlayerWidget({Key? key, this.videoUrl}) : super(key: key);
-
-  @override
-  _VideoPlayerWidgetState createState() => _VideoPlayerWidgetState();
-}
-
-class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
-  VideoPlayerController? _controller;
-  Future<void>? _initializeVideoPlayerFuture;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = VideoPlayerController.network(widget.videoUrl!);
-    _initializeVideoPlayerFuture = _controller!.initialize();
-    _controller!.setLooping(true);
-  }
-
-  @override
-  void dispose() {
-    _controller!.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        FutureBuilder(
-          future: _initializeVideoPlayerFuture,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return AspectRatio(
-                aspectRatio: _controller!.value.aspectRatio,
-                child: VideoPlayer(_controller!),
-              );
-            } else {
-              return Center(child: CircularProgressIndicator());
-            }
-          },
-        ),
-        SizedBox(height: 20),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(
-              icon: Icon(Icons.play_arrow),
-              onPressed: () {
-                _controller!.play();
-              },
-            ),
-            SizedBox(width: 20),
-            IconButton(
-              icon: Icon(Icons.pause),
-              onPressed: () {
-                _controller!.pause();
-              },
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'О Программе',
+                          style: GoogleFonts.montserrat(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Lorem ipsum dolor sit amet, c venenatis. Dl ultrices libero gravida id. Suspendisse aliquam a ligula et egestas. Vestibulum lobortis nisi non mi rutrum, id dapibus justo pretium. Suspendisse potenti. Praesent vel blandit nibh. Vestibulum sit amet neque quis magna aliquam cursus. Phasellus dolor quam, blandit sit amet pellentesque ac, venenatis vitae lectus. Integer euismod id lacus eu tempus. Suspendisse lobortis eleifend nunc.',
+                          style: GoogleFonts.montserrat(
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 10),
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Тренер',
+                    style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                ),
+                Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.all(10),
+                      child: CircleAvatar(
+                        radius: 20,
+                        backgroundImage: AssetImage('images/trener.jpg'),
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Ринат Кайсаров',
+                          style: GoogleFonts.montserrat(
+                              color: Colors.black,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          'тренер',
+                          style: GoogleFonts.montserrat(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontWeight: FontWeight.normal),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 10),
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Видео - занятия',
+                    style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                ),
+                SizedBox(height: 10),
+                VideoList(videoIds: videoIds, videoTitles: videoTitles),
+              ],
             ),
           ],
         ),
-      ],
+      ),
     );
   }
 }

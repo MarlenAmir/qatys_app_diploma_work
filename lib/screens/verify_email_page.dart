@@ -4,6 +4,8 @@ import 'package:diploma_work/screens/HomePage.dart';
 import 'package:diploma_work/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class verifyEmail extends StatefulWidget {
   const verifyEmail({super.key});
@@ -75,7 +77,7 @@ class _verifyEmailState extends State<verifyEmail> {
             SizedBox(height: 20),
             Text(
               'Qatys',
-              style: TextStyle(
+              style: GoogleFonts.montserrat(
                   color: Color(0xFFDEC800),
                   fontSize: 36,
                   fontWeight: FontWeight.normal),
@@ -87,7 +89,7 @@ class _verifyEmailState extends State<verifyEmail> {
               margin: EdgeInsets.only(left: 20),
               child: Text(
                 'Сообщение для верификации вашей почты были отправлены на ваш E-mail, \nпожалуйста проверьте свою почту!',
-                style: TextStyle(
+                style: GoogleFonts.montserrat(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF000000)),
@@ -106,7 +108,7 @@ class _verifyEmailState extends State<verifyEmail> {
                       },
                       child: Text(
                         'Отправить снова',
-                        style: TextStyle(
+                        style: GoogleFonts.montserrat(
                             color: Colors.white,
                             fontWeight: FontWeight.normal,
                             fontSize: 20),
@@ -121,7 +123,7 @@ class _verifyEmailState extends State<verifyEmail> {
                       },
                       child: Text(
                         'Отменить',
-                        style: TextStyle(
+                        style: GoogleFonts.montserrat(
                             color: Color(0xFF7D82FF),
                             fontWeight: FontWeight.normal,
                             fontSize: 20),

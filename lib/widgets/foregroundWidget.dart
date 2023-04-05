@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:diploma_work/screens/BookingPage.dart';
 import 'package:diploma_work/widgets/searchPanel.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class foregroundWidget extends StatefulWidget {
   const foregroundWidget({super.key, required this.searchController});
@@ -33,26 +34,6 @@ class _foregroundWidgetState extends State<foregroundWidget> {
                 return SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: Column(
-                    /*snapshot.data!.docs.map((DocumentSnapshot document) {
-                  Map<String, dynamic> data =
-                  document.data() as Map<String, dynamic>;
-                  
-                  
-                  snapshot.data!.docs
-                              .where((DocumentSnapshot document) {
-                            Map<String, dynamic> data =
-                                document.data() as Map<String, dynamic>;
-                            String name = data['name'].toLowerCase();
-                            String location = data['location'].toLowerCase();
-                            String searchTerm =
-                                searchController.text.toLowerCase();
-                            return name.contains(searchTerm) ||
-                                location.contains(searchTerm);
-                          }).map((DocumentSnapshot document) {
-                            Map<String, dynamic> data =
-                                document.data() as Map<String, dynamic>;
-                  
-                   */
                     children:
                         snapshot.data!.docs
                               .where((DocumentSnapshot document) {
@@ -107,8 +88,8 @@ class _foregroundWidgetState extends State<foregroundWidget> {
                                 ),
                                 Text(
                                   data['name'],
-                                  style: TextStyle(
-                                      fontSize: 16,
+                                  style: GoogleFonts.montserrat(
+                                      fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black),
                                 ),
@@ -140,7 +121,7 @@ class _foregroundWidgetState extends State<foregroundWidget> {
                                 ),
                                 Text(
                                   data['location'],
-                                  style: TextStyle(
+                                  style: GoogleFonts.montserrat(
                                       fontSize: 12,
                                       color: Colors.black.withOpacity(0.5)),
                                 ),
@@ -164,7 +145,7 @@ class _foregroundWidgetState extends State<foregroundWidget> {
                                 ),
                                 Text(
                                   'Площадок: ${data['quantity_foregrounds']}',
-                                  style: TextStyle(
+                                  style: GoogleFonts.montserrat(
                                       fontSize: 12,
                                       color: Colors.black.withOpacity(0.5)),
                                 ),
@@ -188,7 +169,7 @@ class _foregroundWidgetState extends State<foregroundWidget> {
                                 ),
                                 Text(
                                   'от ${data['price']} т/час',
-                                  style: TextStyle(
+                                  style: GoogleFonts.montserrat(
                                       fontSize: 12,
                                       color: Colors.black.withOpacity(0.5)),
                                 ),
@@ -217,7 +198,7 @@ class _foregroundWidgetState extends State<foregroundWidget> {
                                 child: Center(
                                     child: Text(
                                   'ЗАБРОНИРОВАТЬ',
-                                  style: TextStyle(
+                                  style: GoogleFonts.montserrat(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white),
@@ -257,3 +238,4 @@ class FirebaseData {
       required this.coatingType,
       required this.description});
 }
+

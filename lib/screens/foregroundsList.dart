@@ -4,6 +4,7 @@ import 'package:diploma_work/widgets/selectedCategoryForeground.dart';
 import 'package:flutter/material.dart';
 import 'package:diploma_work/widgets/BottomNavBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 
@@ -51,7 +52,7 @@ class _foregroundsListState extends State<foregroundsList> {
                         ),
                         Text(
                           'Thursday, 08 January',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                               color: Colors.black,
                               fontSize: 12,
                               fontWeight: FontWeight.bold),
@@ -59,7 +60,7 @@ class _foregroundsListState extends State<foregroundsList> {
                       ],
                     ),
                     SizedBox(
-                      width: 170,
+                      width: 110,
                     ),
                     GestureDetector(
                       onTap: () {},

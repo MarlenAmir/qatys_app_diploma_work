@@ -4,6 +4,8 @@ import 'package:diploma_work/widgets/foregroundWidget.dart';
 import 'package:diploma_work/widgets/searchPanel.dart';
 import 'package:flutter/material.dart';
 import 'package:diploma_work/widgets/BottomNavBar.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -14,6 +16,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final TextEditingController searchController = TextEditingController();
+  final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,15 +39,15 @@ class _SearchPageState extends State<SearchPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Hello Amir!',
-                          style: TextStyle(
+                          user.email!,
+                          style: GoogleFonts.montserrat(
                               color: Colors.black,
                               fontSize: 12,
                               fontWeight: FontWeight.normal),
                         ),
                         Text(
-                          'Thursday, 08 January',
-                          style: TextStyle(
+                          'Вторник, 04 Апреля',
+                          style: GoogleFonts.montserrat(
                               color: Colors.black,
                               fontSize: 12,
                               fontWeight: FontWeight.bold),
@@ -52,7 +55,7 @@ class _SearchPageState extends State<SearchPage> {
                       ],
                     ),
                     SizedBox(
-                      width: 170,
+                      width: 120,
                     ),
                     GestureDetector(
                       onTap: () {},
@@ -81,7 +84,7 @@ class _SearchPageState extends State<SearchPage> {
                       Text(
                         'На карте',
                         style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                            GoogleFonts.montserrat(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -104,7 +107,7 @@ class _SearchPageState extends State<SearchPage> {
                     Text(
                       'По залам и занятиям',
                       style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          GoogleFonts.montserrat(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -135,7 +138,7 @@ class _SearchPageState extends State<SearchPage> {
                       Text(
                         'Полезные видео',
                         style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                            GoogleFonts.montserrat(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -154,7 +157,7 @@ class _SearchPageState extends State<SearchPage> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Партнерские площадки',
-                        style: TextStyle(
+                        style: GoogleFonts.montserrat(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Colors.black),
@@ -183,3 +186,4 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 }
+

@@ -43,6 +43,10 @@ dependencies:
   cloud_firestore: ^4.4.3
   google_maps_flutter: ^2.2.5
   video_player: ^2.6.0
+  location: ^4.4.0
+  youtube_player_flutter: ^8.1.2
+  url_launcher: ^6.1.10
+  google_fonts: ^4.0.3
     
 
 dev_dependencies:

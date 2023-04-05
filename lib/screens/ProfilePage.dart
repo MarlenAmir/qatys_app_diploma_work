@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:diploma_work/widgets/BottomNavBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diploma_work/screens/LoginPage.dart';
-
+import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -12,6 +13,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final user = FirebaseAuth.instance.currentUser!;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,14 +37,14 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Text(
                         'Amir Marlen',
-                        style: TextStyle(
+                        style: GoogleFonts.montserrat(
                             fontWeight: FontWeight.bold,
                             fontSize: 14,
                             color: Colors.black),
                       ),
                       Text(
-                        'amirmarlen7@gmail.com',
-                        style: TextStyle(
+                        user.email!,
+                        style: GoogleFonts.montserrat(
                             fontWeight: FontWeight.normal,
                             fontSize: 14,
                             color: Colors.black.withOpacity(0.5)),
@@ -56,7 +59,7 @@ class _ProfilePageState extends State<ProfilePage> {
               alignment: Alignment.centerLeft,
               child: Text(
                 'Личные данные',
-                style: TextStyle(
+                style: GoogleFonts.montserrat(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                     color: Colors.black),
@@ -75,7 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       children: [
                         Text(
                           'ФИО',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.normal,
                               fontSize: 14,
                               color: Colors.black),
@@ -83,7 +86,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Spacer(),
                         Text(
                           'Амир Марлен',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.normal,
                               fontSize: 14,
                               color: Colors.black.withOpacity(0.5)),
@@ -102,7 +105,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       children: [
                         Text(
                           'Дата рождения',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.normal,
                               fontSize: 14,
                               color: Colors.black),
@@ -110,7 +113,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Spacer(),
                         Text(
                           '17/11/2001',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.normal,
                               fontSize: 14,
                               color: Colors.black.withOpacity(0.5)),
@@ -129,7 +132,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       children: [
                         Text(
                           'Номер',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.normal,
                               fontSize: 14,
                               color: Colors.black),
@@ -137,7 +140,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Spacer(),
                         Text(
                           '+ 7 775 529 68 50',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.normal,
                               fontSize: 14,
                               color: Colors.black.withOpacity(0.5)),
@@ -165,7 +168,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Center(
                     child: Text(
                   'Выйти',
-                  style: TextStyle(
+                  style: GoogleFonts.montserrat(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Colors.white),

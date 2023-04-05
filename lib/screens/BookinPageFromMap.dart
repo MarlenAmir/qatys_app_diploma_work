@@ -3,19 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:diploma_work/screens/BookingDialog.dart';
 import 'package:diploma_work/widgets/foregroundWidget.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 
-class BookingPage extends StatelessWidget {
-  final FirebaseData firebaseData;
-  BookingPage({required this.firebaseData});
 
-  final DateTime date = DateTime.now();
+class BookingPageFromMap extends StatelessWidget {
 
-  /*final BookingData bookingData;
-  BookingPage({required this.bookingData});*/
 
+  final BookingData bookingData;
+  BookingPageFromMap({required this.bookingData});
   
-
 
 
   @override
@@ -35,7 +30,7 @@ class BookingPage extends StatelessWidget {
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10)),
                     child: Image.network(
-                      firebaseData.image,
+                      bookingData.image,
                       width: 300,
                     ),
                   ),
@@ -43,14 +38,12 @@ class BookingPage extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                Center(
-                  child: Text(
-                    firebaseData.name,
-                    style: GoogleFonts.montserrat(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
+                Text(
+                  bookingData.name,
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
                 ),
                 SizedBox(
                   height: 10,
@@ -67,7 +60,7 @@ class BookingPage extends StatelessWidget {
                       width: 5,
                     ),
                     Text(
-                      firebaseData.location,
+                      bookingData.location,
                       style: GoogleFonts.montserrat(
                           fontSize: 12, color: Colors.black.withOpacity(0.5)),
                     ),
@@ -98,7 +91,7 @@ class BookingPage extends StatelessWidget {
                           ),
                           Spacer(),
                           Text(
-                            firebaseData.playersQuantity,
+                            bookingData.playersQuantity,
                             style: GoogleFonts.montserrat(
                                 fontSize: 14,
                                 color: Colors.black.withOpacity(0.5)),
@@ -126,7 +119,7 @@ class BookingPage extends StatelessWidget {
                           ),
                           Spacer(),
                           Text(
-                            firebaseData.coatingType,
+                            bookingData.coatingType,
                             style: GoogleFonts.montserrat(
                                 fontSize: 14,
                                 color: Colors.black.withOpacity(0.5)),
@@ -153,7 +146,7 @@ class BookingPage extends StatelessWidget {
                               height: 10,
                             ),
                             Text(
-                              firebaseData.description,
+                              bookingData.description,
                               style: GoogleFonts.montserrat(
                                   fontSize: 12,
                                   fontWeight: FontWeight.normal,
@@ -176,19 +169,17 @@ class BookingPage extends StatelessWidget {
                   width: 340,
                   height: 40,
                   child: ElevatedButton(
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) => const BookingDialog());
+                    onPressed: (){
+                      showDialog(context: context, builder: (context)=> const BookingDialog());
                     },
                     child: Center(
                         child: Text(
-                      'Выбрать дату',
-                      style: GoogleFonts.montserrat(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    )),
+                          'Выбрать дату',
+                          style: GoogleFonts.montserrat(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        )),
                   ),
                 ),
               ],
@@ -199,4 +190,3 @@ class BookingPage extends StatelessWidget {
     );
   }
 }
-

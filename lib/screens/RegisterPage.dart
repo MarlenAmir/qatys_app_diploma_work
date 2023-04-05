@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diploma_work/main.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:diploma_work/utils/utils.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 
 
@@ -61,7 +63,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(height: 20),
                 Text(
                   'Qatys',
-                  style: TextStyle(
+                  style: GoogleFonts.montserrat(
                       color: Color(0xFFDEC800),
                       fontSize: 36,
                       fontWeight: FontWeight.normal),
@@ -71,7 +73,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 Text(
                   'Добро пожаловать!',
-                  style: TextStyle(
+                  style: GoogleFonts.montserrat(
                       color: Color(0xFF000000),
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
@@ -79,7 +81,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(height: 5),
                 Text(
                   'Держите ваши данные в безопасности!',
-                  style: TextStyle(color: Color(0xFF9F9F9F), fontSize: 14),
+                  style: GoogleFonts.montserrat(color: Color(0xFF9F9F9F), fontSize: 14),
                 ),
                 SizedBox(height: 10),
                 Container(
@@ -87,7 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   margin: EdgeInsets.only(left: 20),
                   child: Text(
                     'Регистрация',
-                    style: TextStyle(
+                    style: GoogleFonts.montserrat(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF000000)),
@@ -156,7 +158,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       },
                       child: Text(
                         'Регистрация',
-                        style: TextStyle(
+                        style: GoogleFonts.montserrat(
                             color: Colors.white,
                             fontWeight: FontWeight.normal,
                             fontSize: 20),
@@ -167,7 +169,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     Text(
                       'Joined us before?',
-                      style: TextStyle(
+                      style: GoogleFonts.montserrat(
                         fontSize: 16,
                         fontWeight: FontWeight.normal,
                         color: Color(0xFF9F9F9F),
@@ -179,7 +181,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         },
                         child: Text(
                           'Login',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                               color: Color(0xFF646AFF),
                               fontSize: 16,
                               fontWeight: FontWeight.bold),
