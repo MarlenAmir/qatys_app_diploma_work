@@ -4,9 +4,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:diploma_work/screens/LoginPage.dart';
 import 'package:diploma_work/utils/utils.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
   void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await initializeDateFormatting('ru_RU');
+
   await Firebase.initializeApp();
   runApp(const MyApp());
 }

@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diploma_work/screens/LoginPage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -13,7 +14,36 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  final user = FirebaseAuth.instance.currentUser!;
+  String name = '';
+  String surname = '';
+  String email = '';
+  String phoneNumber = '';
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  Future<void> loadData() async {
+    try {
+      final auth = FirebaseAuth.instance;
+      final User? user = auth.currentUser;
+      if (user != null) {
+        final FirebaseFirestore firestore = FirebaseFirestore.instance;
+        final DocumentSnapshot snapshot =
+            await firestore.collection('users').doc(user.uid).get();
+        setState(() {
+          name = snapshot.get('name');
+          surname = snapshot.get('surname');
+          email = snapshot.get('email');
+          phoneNumber = snapshot.get('phone_number');
+        });
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +66,14 @@ class _ProfilePageState extends State<ProfilePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Amir Marlen',
+                        name,
                         style: GoogleFonts.montserrat(
                             fontWeight: FontWeight.bold,
                             fontSize: 14,
                             color: Colors.black),
                       ),
                       Text(
-                        user.email!,
+                        email,
                         style: GoogleFonts.montserrat(
                             fontWeight: FontWeight.normal,
                             fontSize: 14,
@@ -77,7 +107,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Row(
                       children: [
                         Text(
-                          'ФИО',
+                          'Имя',
                           style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.normal,
                               fontSize: 14,
@@ -85,7 +115,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         Spacer(),
                         Text(
-                          'Амир Марлен',
+                          name,
                           style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.normal,
                               fontSize: 14,
@@ -104,7 +134,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Row(
                       children: [
                         Text(
-                          'Дата рождения',
+                          'Фамилия',
                           style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.normal,
                               fontSize: 14,
@@ -112,7 +142,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         Spacer(),
                         Text(
-                          '17/11/2001',
+                          surname,
                           style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.normal,
                               fontSize: 14,
@@ -139,7 +169,34 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         Spacer(),
                         Text(
-                          '+ 7 775 529 68 50',
+                          phoneNumber,
+                          style: GoogleFonts.montserrat(
+                              fontWeight: FontWeight.normal,
+                              fontSize: 14,
+                              color: Colors.black.withOpacity(0.5)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                    child: Divider(
+                        thickness: 1, color: Colors.black.withOpacity(0.5)),
+                  ),
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    child: Row(
+                      children: [
+                        Text(
+                          'E-mail',
+                          style: GoogleFonts.montserrat(
+                              fontWeight: FontWeight.normal,
+                              fontSize: 14,
+                              color: Colors.black),
+                        ),
+                        Spacer(),
+                        Text(
+                          email,
                           style: GoogleFonts.montserrat(
                               fontWeight: FontWeight.normal,
                               fontSize: 14,
@@ -151,12 +208,16 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             TextButton(
-              onPressed: (){
-                FirebaseAuth.instance.signOut();
-                
-            
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -172,6 +233,85 @@ class _ProfilePageState extends State<ProfilePage> {
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: Colors.white),
+                )),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      contentTextStyle: TextStyle(fontSize: 18),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      title: Text(
+                        "Вы точно хотите удалить аккаунт?",
+                        style: GoogleFonts.montserrat(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                      content: Text(
+                        "Данные будут стереты!",
+                        style: GoogleFonts.montserrat(
+                            fontSize: 12,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.black),
+                      ),
+                      actions: <Widget>[
+                        TextButton(
+                          child: Text(
+                            "Отмена",
+                            style: GoogleFonts.montserrat(
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            // Действия для опции 1
+                          },
+                        ),
+                        TextButton(
+                          child: Text(
+                            "Удалить",
+                            style: GoogleFonts.montserrat(
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.red),
+                          ),
+                          onPressed: () async {
+                            // Действия для опции 2
+                            final user = FirebaseAuth.instance.currentUser;
+                            try {
+                              await user!.delete();
+                            } catch (e) {
+                              print('Error deleting user: $e');
+                            }
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()),
+                            );
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: Container(
+                width: 140,
+                height: 40,
+                child: Center(
+                    child: Text(
+                  'Удалить аккаунт',
+                  style: GoogleFonts.montserrat(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red),
                 )),
               ),
             ),

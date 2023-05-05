@@ -35,7 +35,7 @@ class _searchPanelState extends State<searchPanel> {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(25),
           ),
-          labelText: "Search",
+          labelText: "Поиск",
         ),
       ),
     );

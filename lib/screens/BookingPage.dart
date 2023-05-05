@@ -4,6 +4,7 @@ import 'package:diploma_work/screens/BookingDialog.dart';
 import 'package:diploma_work/widgets/foregroundWidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:diploma_work/screens/firebaseData.dart';
 
 class BookingPage extends StatelessWidget {
   final FirebaseData firebaseData;
@@ -11,15 +12,11 @@ class BookingPage extends StatelessWidget {
 
   final DateTime date = DateTime.now();
 
-  /*final BookingData bookingData;
-  BookingPage({required this.bookingData});*/
-
-  
-
-
-
   @override
   Widget build(BuildContext context) {
+    BookingDataName bookingDataName =
+        BookingDataName(foregroundName: firebaseData.name);
+
     return Scaffold(
       body: ListView(
         children: [
@@ -50,6 +47,7 @@ class BookingPage extends StatelessWidget {
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.black),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 SizedBox(
@@ -177,9 +175,11 @@ class BookingPage extends StatelessWidget {
                   height: 40,
                   child: ElevatedButton(
                     onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) => const BookingDialog());
+                     Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => BookingDialog(),
+                            ),
+                          );
                     },
                     child: Center(
                         child: Text(
@@ -200,3 +200,7 @@ class BookingPage extends StatelessWidget {
   }
 }
 
+class BookingDataName {
+  final String foregroundName;
+  BookingDataName({required this.foregroundName});
+}

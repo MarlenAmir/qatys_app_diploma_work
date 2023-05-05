@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:diploma_work/screens/BookingPage.dart';
 import 'package:diploma_work/widgets/searchPanel.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:diploma_work/screens/firebaseData.dart';
+
+
 
 class foregroundWidget extends StatefulWidget {
   const foregroundWidget({super.key, required this.searchController});
 
   final TextEditingController searchController;
-
 
   @override
   State<foregroundWidget> createState() => _foregroundWidgetState();
@@ -29,28 +31,26 @@ class _foregroundWidgetState extends State<foregroundWidget> {
             }
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
-                return Text('Loading...');
+                return CircularProgressIndicator();
               default:
                 return SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: Column(
                     children:
-                        snapshot.data!.docs
-                              .where((DocumentSnapshot document) {
-                            Map<String, dynamic> data =
-                                document.data() as Map<String, dynamic>;
-                            String name = data['name'].toLowerCase();
-                            String location = data['location'].toLowerCase();
-                            String searchTerm =
-                                widget.searchController.text.toLowerCase();
-                                RegExp regExp = RegExp(searchTerm, unicode: true);
+                        snapshot.data!.docs.where((DocumentSnapshot document) {
+                      Map<String, dynamic> data =
+                          document.data() as Map<String, dynamic>;
+                      String name = data['name'].toLowerCase();
+                      String location = data['location'].toLowerCase();
+                      String searchTerm =
+                          widget.searchController.text.toLowerCase();
+                      RegExp regExp = RegExp(searchTerm, unicode: true);
 
-                            return name.contains(searchTerm) ||
-                                location.contains(searchTerm);
-                          }).map((DocumentSnapshot document) {
-                            Map<String, dynamic> data =
-                                document.data() as Map<String, dynamic>;
-                  
+                      return name.contains(searchTerm) ||
+                          location.contains(searchTerm);
+                    }).map((DocumentSnapshot document) {
+                      Map<String, dynamic> data =
+                          document.data() as Map<String, dynamic>;
                       FirebaseData firebaseData = FirebaseData(
                           image: data['image_url'],
                           name: data['name'],
@@ -180,7 +180,8 @@ class _foregroundWidgetState extends State<foregroundWidget> {
                             ),
                             TextButton(
                               onPressed: () {
-                                Navigator.of(context).push(
+                                Navigator.push(
+                                  context,
                                   MaterialPageRoute(
                                     builder: (context) => BookingPage(
                                       firebaseData: firebaseData,
@@ -222,20 +223,4 @@ class _foregroundWidgetState extends State<foregroundWidget> {
   }
 }
 
-class FirebaseData {
-  final String image;
-  final String name;
-  final String location;
-  final String playersQuantity;
-  final String coatingType;
-  final String description;
-
-  FirebaseData(
-      {required this.image,
-      required this.name,
-      required this.location,
-      required this.playersQuantity,
-      required this.coatingType,
-      required this.description});
-}
 

@@ -1,10 +1,10 @@
-import 'package:diploma_work/screens/BookinPageFromMap.dart';
 import 'package:diploma_work/screens/BookingPage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:location/location.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:diploma_work/screens/firebaseData.dart';
 
 
 class MapPage extends StatefulWidget {
@@ -65,7 +65,7 @@ class _MapPageState extends State<MapPage> {
       markers = querySnapshot.docs.map((document) {
         Map<String, dynamic> data = document.data() as Map<String, dynamic>;
 
-        BookingData bookingData = BookingData(
+        FirebaseData firebaseData = FirebaseData(
             image: data['image_url'],
             name: data['name'],
             location: data['location'],
@@ -85,8 +85,8 @@ class _MapPageState extends State<MapPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => BookingPageFromMap(
-                    bookingData: bookingData,
+                  builder: (context) => BookingPage(
+                    firebaseData: firebaseData,
                   ),
                 ),
               );
@@ -111,19 +111,4 @@ class _MapPageState extends State<MapPage> {
   }
 }
 
-class BookingData {
-  final String image;
-  final String name;
-  final String location;
-  final String playersQuantity;
-  final String coatingType;
-  final String description;
 
-  BookingData(
-      {required this.image,
-      required this.name,
-      required this.location,
-      required this.playersQuantity,
-      required this.coatingType,
-      required this.description});
-}

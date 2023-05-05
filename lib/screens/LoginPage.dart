@@ -7,7 +7,7 @@ import 'package:diploma_work/main.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:diploma_work/utils/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:google_sign_in/google_sign_in.dart';
 
 TextEditingController emailTextInputController = TextEditingController();
 TextEditingController passwordTextInputController = TextEditingController();
@@ -23,6 +23,29 @@ class _LoginPageState extends State<LoginPage> {
   bool _isObscure = true;
 
   final formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    emailTextInputController.clear();
+    passwordTextInputController.clear();
+    super.initState();
+  }
+
+  signWithGoogle() async{
+    final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication gAuth = await gUser!.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: gAuth.accessToken,
+      idToken: gAuth.idToken,
+    );
+
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+
+  }
+
+  
 
   Future signIn() async {
     final isValid = formKey.currentState!.validate();
@@ -82,7 +105,8 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 5),
                 Text(
                   'Держите ваши данные в безопасности!',
-                  style: GoogleFonts.montserrat(color: Color(0xFF9F9F9F), fontSize: 14),
+                  style: GoogleFonts.montserrat(
+                      color: Color(0xFF9F9F9F), fontSize: 14),
                 ),
                 SizedBox(height: 10),
                 Container(
@@ -104,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: TextFormField(
                     validator: (email) =>
                         email != null && !EmailValidator.validate(email)
-                            ? "Enter a valid email"
+                            ? "Введите правильный E-mail"
                             : null,
                     controller: emailTextInputController,
                     keyboardType: TextInputType.emailAddress,
@@ -122,8 +146,8 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   width: 370,
                   child: TextFormField(
-                    validator: (value) => value != null && value.length < 6
-                        ? "Минимум 6 символов"
+                    validator: (value) => value != null && value.length < 8
+                        ? "Минимум 8 символов"
                         : null,
                     controller: passwordTextInputController,
                     obscureText: _isObscure,
@@ -193,7 +217,13 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   width: 370,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      try {
+                        await signWithGoogle();
+                      } catch (e) {
+                        print(e);
+                      }
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -216,7 +246,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Don' 't' '' 'have an account?',
+                      'Don\'t have an account?',
                       style: GoogleFonts.montserrat(
                         fontSize: 16,
                         fontWeight: FontWeight.normal,

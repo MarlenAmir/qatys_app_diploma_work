@@ -1,20 +1,66 @@
 {
   "project_info": {
     "project_number": "786547830854",
+    "firebase_url": "https://qatys-app-default-rtdb.firebaseio.com",
     "project_id": "qatys-app",
     "storage_bucket": "qatys-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:786547830854:android:5c900760a9702c36f1da47",
+        "mobilesdk_app_id": "1:786547830854:android:7e652001874f5c4df1da47",
         "android_client_info": {
           "package_name": "com.example.diploma_work"
         }
       },
       "oauth_client": [
         {
-          "client_id": "786547830854-2lj5ek77g1geb1enekpvcmesij12dqjs.apps.googleusercontent.com",
+          "client_id": "786547830854-oker6aubpo9en258101denrhnen64ge0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.name",
+            "certificate_hash": "e8f9e69ae0cd3edde092e9e550100099edb2bc7b"
+          }
+        },
+        {
+          "client_id": "786547830854-ejuk13ded33030hllng75it41a1slmd1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtA1-679ZBMfGPNyFiFBkzhpSzb5Im7Io"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "786547830854-2lj5ek77g1geb1enekpvcmesij12dqjs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:786547830854:android:d7074d1b4ca0775df1da47",
+        "android_client_info": {
+          "package_name": "com.example.qatys_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "786547830854-4s41sbagg0r2h3ahn1s0a8qt7ipf0lke.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.qatys_app",
+            "certificate_hash": "e8f9e69ae0cd3edde092e9e550100099edb2bc7b"
+          }
+        },
+        {
+          "client_id": "786547830854-ejuk13ded33030hllng75it41a1slmd1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

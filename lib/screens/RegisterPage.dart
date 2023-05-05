@@ -4,9 +4,7 @@ import 'package:diploma_work/main.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:diploma_work/utils/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -18,15 +16,19 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   bool _isObscure = true;
 
-   final formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   TextEditingController emailTextInputController = TextEditingController();
   TextEditingController passwordTextInputController = TextEditingController();
+  TextEditingController phoneTextController = TextEditingController();
+  TextEditingController nameTextController = TextEditingController();
+  TextEditingController surnameTextController = TextEditingController();
+
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future signUp() async {
-
     final isValid = formKey.currentState!.validate();
-    if(!isValid) return;
+    if (!isValid) return;
 
     showDialog(
         context: context,
@@ -35,14 +37,27 @@ class _RegisterPageState extends State<RegisterPage> {
               child: CircularProgressIndicator(),
             ));
 
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailTextInputController.text.trim(),
-          password: passwordTextInputController.text.trim());
+   try {
+    final auth = FirebaseAuth.instance;
+    final UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+      email: emailTextInputController.text, 
+      password: passwordTextInputController.text,
+    );
+    
+    final String uid = userCredential.user!.uid;
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    await firestore.collection('users').doc(uid).set({
+      'name': nameTextController.text,
+      'surname': surnameTextController.text,
+      'email': emailTextInputController.text,
+      'phone_number': phoneTextController.text,
+    });
+          
+          
+      
     } on FirebaseAuthException catch (e) {
       print(e);
       Utils.showSnackBar(e.message);
-      
     }
 
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
@@ -58,7 +73,10 @@ class _RegisterPageState extends State<RegisterPage> {
             Column(
               children: [
                 Container(
-                  child: Image.asset('images/logo.png'),
+                  child: Image.asset(
+                    'images/logo.png',
+                    height: 100,
+                  ),
                 ),
                 SizedBox(height: 20),
                 Text(
@@ -81,7 +99,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(height: 5),
                 Text(
                   'Держите ваши данные в безопасности!',
-                  style: GoogleFonts.montserrat(color: Color(0xFF9F9F9F), fontSize: 14),
+                  style: GoogleFonts.montserrat(
+                      color: Color(0xFF9F9F9F), fontSize: 14),
                 ),
                 SizedBox(height: 10),
                 Container(
@@ -101,7 +120,41 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(
                   width: 370,
                   child: TextFormField(
-                    validator: (email)=>email!= null && !EmailValidator.validate(email)?"Enter a valid email":null,
+                    validator: (value) => value != null && value.length < 2
+                        ? "Минимум 2 символов"
+                        : null,
+                    controller: nameTextController,
+                    maxLines: 1,
+                    minLines: 1,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Ваше Имя",
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                SizedBox(
+                  width: 370,
+                  child: TextFormField(
+                    validator: (value) =>
+                        value != null && value.length < 2 ? "2 символа" : null,
+                    controller: surnameTextController,
+                    maxLines: 1,
+                    minLines: 1,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Ваша Фамилия",
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                SizedBox(
+                  width: 370,
+                  child: TextFormField(
+                    validator: (email) =>
+                        email != null && !EmailValidator.validate(email)
+                            ? "Введите правильный E-mail"
+                            : null,
                     controller: emailTextInputController,
                     keyboardType: TextInputType.emailAddress,
                     maxLines: 1,
@@ -115,6 +168,22 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(
                   height: 10,
                 ),
+                SizedBox(
+                  width: 370,
+                  child: TextFormField(
+                    validator: (value) => value != null && value.length < 11
+                        ? "Минимум 11 символов"
+                        : null,
+                    controller: phoneTextController,
+                    maxLines: 1,
+                    minLines: 1,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Номер телефона",
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
                 SizedBox(
                   width: 370,
                   child: TextFormField(
@@ -136,12 +205,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             });
                           }),
                       border: OutlineInputBorder(),
-                      labelText: "Password",
+                      labelText: "Пароль",
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 10,
                 ),
                 SizedBox(
                   height: 10,
