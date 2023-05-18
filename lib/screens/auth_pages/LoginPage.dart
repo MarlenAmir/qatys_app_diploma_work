@@ -1,12 +1,8 @@
 import 'package:diploma_work/screens/auth_pages/view.dart';
 import 'package:diploma_work/screens/services/auth_services/auth_service.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:diploma_work/main.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:diploma_work/utils/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -20,15 +16,12 @@ class _LoginPageState extends State<LoginPage> {
 
   final AuthService authService = AuthService();
 
-
   @override
   void initState() {
     authService.emailTextInputController.clear();
     authService.passwordTextInputController.clear();
     super.initState();
   }
-
-
 
   @override
   Widget build(BuildContext context) {

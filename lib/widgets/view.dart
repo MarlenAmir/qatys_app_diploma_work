@@ -4,3 +4,4 @@ export 'foregroundWidget.dart';
 export 'searchPanel.dart';
 export 'tournamentWidget.dart';
 export 'videoList.dart';
+export 'photoUploadWidget.dart';

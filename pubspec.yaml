@@ -51,6 +51,10 @@ dependencies:
   google_sign_in: ^6.1.0
   firebase_database: ^10.1.1
   booking_calendar: ^1.1.9
+  firebase_storage: ^11.2.1
+  image_picker: ^0.8.7+5
+  cached_network_image: ^3.2.3
+  shared_preferences: ^2.1.1
     
 
 dev_dependencies:

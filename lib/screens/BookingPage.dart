@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:diploma_work/screens/BookingDialog.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:diploma_work/screens/model/firebaseData.dart';
+import 'package:diploma_work/model/firebaseData.dart';
 
 class BookingPage extends StatelessWidget {
   final FirebaseData firebaseData;
@@ -27,7 +27,9 @@ class BookingPage extends StatelessWidget {
                         topRight: Radius.circular(10)),
                     child: Image.network(
                       firebaseData.image,
-                      width: 300,
+                      width: double.infinity,
+                      height: 220,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),

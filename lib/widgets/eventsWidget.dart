@@ -84,35 +84,33 @@ class _EventWidgetState extends State<EventWidget> {
                 color: const Color(0xFFF7C821),
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Container(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 5),
-                    Container(
-                      width: 100,
-                      child: Text(
-                        'Баскетбольные площадки',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.montserrat(
-                            fontSize: 12,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.white),
-                      ),
+              child: Column(
+                children: [
+                  const SizedBox(height: 5),
+                  SizedBox(
+                    width: 100,
+                    child: Text(
+                      'Баскетбольные площадки',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.white),
                     ),
-                    const Divider(
-                      color: Colors.white,
-                      thickness: 1,
-                      endIndent: 0,
-                      indent: 0,
-                    ),
-                    const SizedBox(height: 5),
-                    SizedBox(
-                      width: 60,
-                      height: 60,
-                      child: Image.asset('images/basketball.png'),
-                    ),
-                  ],
-                ),
+                  ),
+                  const Divider(
+                    color: Colors.white,
+                    thickness: 1,
+                    endIndent: 0,
+                    indent: 0,
+                  ),
+                  const SizedBox(height: 5),
+                  SizedBox(
+                    width: 60,
+                    height: 60,
+                    child: Image.asset('images/basketball.png'),
+                  ),
+                ],
               ),
             ),
           ),

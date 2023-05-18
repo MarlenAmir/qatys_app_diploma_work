@@ -1,5 +1,4 @@
-import 'package:diploma_work/screens/main_pages/view.dart';
-import 'package:diploma_work/screens/auth_pages/view.dart';
+import 'package:diploma_work/routes/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:diploma_work/utils/utils.dart';
@@ -23,12 +22,7 @@ class MyApp extends StatelessWidget {
       scaffoldMessengerKey: Utils.messengerKey,
       navigatorKey: navigatorKey,
       initialRoute: '/',
-      routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) => const Landing(),
-        // When navigating to the "/second" route, build the SecondScreen widget.
-        '/second': (context) => const HomePage(),
-      },
+      routes: routes,
     );
   }
 }

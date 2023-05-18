@@ -1,3 +1,4 @@
+
 import 'package:diploma_work/screens/services/auth_services/reset_password_service.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
@@ -12,7 +13,7 @@ class ForgotPasswordPage extends StatefulWidget {
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   
-  late ResetPasswordService resetPasswordService = ResetPasswordService(context);
+ late ResetPasswordService resetPasswordService = ResetPasswordService(context);
 
   @override
   void dispose() {

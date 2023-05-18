@@ -94,7 +94,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
                     color: Color(0xFF000000)),
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
@@ -113,8 +113,8 @@ class _VerifyEmailState extends State<VerifyEmail> {
                             fontSize: 20),
                       )),
                 ),
-                SizedBox(height: 20,),
-                Container(
+                const SizedBox(height: 20,),
+                SizedBox(
                   width: 370,
                   child: TextButton(
                       onPressed: () {

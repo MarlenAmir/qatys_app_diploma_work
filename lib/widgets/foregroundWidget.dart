@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:diploma_work/screens/BookingPage.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:diploma_work/screens/model/firebaseData.dart';
+import 'package:diploma_work/model/firebaseData.dart';
 
 class ForegroundWidget extends StatefulWidget {
   const ForegroundWidget({super.key, required this.searchController});
@@ -56,6 +56,7 @@ class _ForegroundWidgetState extends State<ForegroundWidget> {
                           coatingType: data['coatingType'],
                           description: data['description']);
                       return Container(
+                        width: double.infinity,
                         margin: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -70,7 +71,9 @@ class _ForegroundWidgetState extends State<ForegroundWidget> {
                                     topRight: Radius.circular(10)),
                                 child: Image.network(
                                   data['image_url'],
-                                  width: 300,
+                                  width: double.infinity,
+                                  height: 250,
+                                  fit: BoxFit.cover,
                                 ),
                               ),
                             ),

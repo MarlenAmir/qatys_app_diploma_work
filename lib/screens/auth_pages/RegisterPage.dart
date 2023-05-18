@@ -1,10 +1,7 @@
+import 'package:diploma_work/screens/services/auth_services/register_service.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:diploma_work/main.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:diploma_work/utils/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -16,65 +13,20 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   bool _isObscure = true;
 
-  final formKey = GlobalKey<FormState>();
-
-  TextEditingController emailTextInputController = TextEditingController();
-  TextEditingController passwordTextInputController = TextEditingController();
-  TextEditingController phoneTextController = TextEditingController();
-  TextEditingController nameTextController = TextEditingController();
-  TextEditingController surnameTextController = TextEditingController();
-
-  final FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-  Future signUp() async {
-    final isValid = formKey.currentState!.validate();
-    if (!isValid) return;
-
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => const Center(
-              child: CircularProgressIndicator(),
-            ));
-
-    try {
-      final auth = FirebaseAuth.instance;
-      final UserCredential userCredential =
-          await auth.createUserWithEmailAndPassword(
-        email: emailTextInputController.text,
-        password: passwordTextInputController.text,
-      );
-
-      final String uid = userCredential.user!.uid;
-      final FirebaseFirestore firestore = FirebaseFirestore.instance;
-      await firestore.collection('users').doc(uid).set({
-        'name': nameTextController.text,
-        'surname': surnameTextController.text,
-        'email': emailTextInputController.text,
-        'phone_number': phoneTextController.text,
-      });
-    } on FirebaseAuthException catch (e) {
-      print(e);
-      Utils.showSnackBar(e.message);
-    }
-
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
-  }
 
   @override
   Widget build(BuildContext context) {
+    RegisterService registerService = RegisterService(context);
     return Form(
-      key: formKey,
+      key: registerService.formKey,
       child: Scaffold(
         body: ListView(
           children: [
             Column(
               children: [
-                Container(
-                  child: Image.asset(
-                    'images/logo.png',
-                    height: 100,
-                  ),
+                Image.asset(
+                  'images/logo.png',
+                  height: 100,
                 ),
                 const SizedBox(height: 20),
                 Text(
@@ -121,7 +73,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     validator: (value) => value != null && value.length < 2
                         ? "Минимум 2 символов"
                         : null,
-                    controller: nameTextController,
+                    controller: registerService.nameTextController,
                     maxLines: 1,
                     minLines: 1,
                     decoration: const InputDecoration(
@@ -136,7 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: TextFormField(
                     validator: (value) =>
                         value != null && value.length < 2 ? "2 символа" : null,
-                    controller: surnameTextController,
+                    controller: registerService.surnameTextController,
                     maxLines: 1,
                     minLines: 1,
                     decoration: const InputDecoration(
@@ -153,7 +105,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         email != null && !EmailValidator.validate(email)
                             ? "Введите правильный E-mail"
                             : null,
-                    controller: emailTextInputController,
+                    controller: registerService.emailTextInputController,
                     keyboardType: TextInputType.emailAddress,
                     maxLines: 1,
                     minLines: 1,
@@ -172,7 +124,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     validator: (value) => value != null && value.length < 11
                         ? "Минимум 11 символов"
                         : null,
-                    controller: phoneTextController,
+                    controller: registerService.phoneTextController,
                     maxLines: 1,
                     minLines: 1,
                     decoration: const InputDecoration(
@@ -188,7 +140,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     validator: (value) => value != null && value.length < 6
                         ? "Минимум 6 символов"
                         : null,
-                    controller: passwordTextInputController,
+                    controller: registerService.passwordTextInputController,
                     obscureText: _isObscure,
                     maxLines: 1,
                     minLines: 1,
@@ -218,7 +170,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   width: 370,
                   child: TextButton(
                       onPressed: () {
-                        signUp();
+                        registerService.signUp();
                       },
                       child: Text(
                         'Регистрация',

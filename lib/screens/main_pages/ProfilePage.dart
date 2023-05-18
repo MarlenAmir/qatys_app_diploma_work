@@ -53,32 +53,11 @@ class _ProfilePageState extends State<ProfilePage> {
             margin: EdgeInsets.only(top: 40, left: 20),
             child: Row(
               children: [
-                const CircleAvatar(
-                    radius: 40,
-                    backgroundImage: AssetImage('images/logo.png'),
-                    backgroundColor: Colors.amberAccent),
+                PhotoUploadWidget(),
                 const SizedBox(
                   width: 10,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      name,
-                      style: GoogleFonts.montserrat(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                          color: Colors.black),
-                    ),
-                    Text(
-                      email,
-                      style: GoogleFonts.montserrat(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 14,
-                          color: Colors.black.withOpacity(0.5)),
-                    ),
-                  ],
-                ),
+                
               ],
             ),
           ),
