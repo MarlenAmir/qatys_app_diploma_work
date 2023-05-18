@@ -1,6 +1,6 @@
 import 'package:diploma_work/screens/MapPage.dart';
 import 'package:diploma_work/screens/VideoPage.dart';
-import 'package:diploma_work/screens/categories/allCategories.dart';
+import 'package:diploma_work/screens/categories/view.dart';
 import 'package:flutter/material.dart';
 import 'package:diploma_work/widgets/view.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,6 +8,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
+import 'package:diploma_work/screens/repository/image_provider/user_provider.dart';
+
+
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -61,6 +65,8 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
+    final String? imageUrl = Provider.of<AvatarProvider>(context).imageUrl;
+
     return Scaffold(
       body: Container(
         color: Colors.white,
@@ -72,9 +78,11 @@ class _SearchPageState extends State<SearchPage> {
                   children: [
                     Container(
                       margin: const EdgeInsets.all(20),
-                      child: const CircleAvatar(
+                      child:  CircleAvatar(
                         radius: 20,
-                        backgroundImage: AssetImage('images/emoji.png'),
+                        backgroundImage: imageUrl != null
+                            ? NetworkImage(imageUrl) as ImageProvider<Object>
+                            : AssetImage('images/logo.png'),
                       ),
                     ),
                     Column(
@@ -139,9 +147,9 @@ class _SearchPageState extends State<SearchPage> {
                   indent: 20,
                 ),
                 InkWell(
-                  onTap: (){
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => allCategories()));
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => allCategories()));
                   },
                   child: Row(
                     children: [
@@ -230,7 +238,7 @@ class _SearchPageState extends State<SearchPage> {
           ],
         ),
       ),
-      bottomNavigationBar:const BottomNavBar(),
+      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }

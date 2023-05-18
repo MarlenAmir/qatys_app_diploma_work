@@ -8,7 +8,7 @@ class Utils {
 
     final snackBar = SnackBar(
       content: Text(text),
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.green,
     );
 
     messengerKey.currentState!

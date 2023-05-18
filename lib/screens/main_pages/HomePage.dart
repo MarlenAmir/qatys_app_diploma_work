@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:provider/provider.dart';
+import 'package:diploma_work/screens/repository/image_provider/user_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -57,6 +59,8 @@ class _HomePage extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final String? imageUrl = Provider.of<AvatarProvider>(context).imageUrl;
+
     return Scaffold(
       body: Container(
         color: Color(0xFFFFFFFF),
@@ -68,9 +72,11 @@ class _HomePage extends State<HomePage> {
                   children: [
                     Container(
                       margin: const EdgeInsets.all(20),
-                      child: const CircleAvatar(
+                      child: CircleAvatar(
                         radius: 20,
-                        backgroundImage: AssetImage('images/emoji.png'),
+                        backgroundImage: imageUrl != null
+                            ? NetworkImage(imageUrl) as ImageProvider<Object>
+                            : AssetImage('images/logo.png'),
                       ),
                     ),
                     Column(
@@ -117,7 +123,7 @@ class _HomePage extends State<HomePage> {
                   child: TextButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => TournamentWidget()));
+                            builder: (context) => TournamentWidget()));
                       },
                       child: Text(
                         'Открытые турниры',
