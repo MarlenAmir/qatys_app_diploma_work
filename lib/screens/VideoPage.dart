@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
 import 'package:diploma_work/widgets/videoList.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -29,6 +28,8 @@ import 'package:google_fonts/google_fonts.dart';
     'Как бить по мячу подъёмом сильно и точно?',];
 
 class VideoPage extends StatefulWidget {
+  const VideoPage({super.key});
+
   @override
   State<VideoPage> createState() => _VideoPageState();
 }
@@ -43,10 +44,10 @@ class _VideoPageState extends State<VideoPage> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Container(
+                SizedBox(
                   width: double.infinity,
                   height: 250,
                   child: ClipRRect(
@@ -56,7 +57,7 @@ class _VideoPageState extends State<VideoPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
@@ -74,7 +75,7 @@ class _VideoPageState extends State<VideoPage> {
                               color: Colors.black),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Container(
@@ -90,11 +91,11 @@ class _VideoPageState extends State<VideoPage> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 10),
+                  margin: const EdgeInsets.only(left: 10),
                   alignment: Alignment.centerLeft,
                   child: Text(
                     'Тренер',
@@ -107,8 +108,8 @@ class _VideoPageState extends State<VideoPage> {
                 Row(
                   children: [
                     Container(
-                      margin: EdgeInsets.all(10),
-                      child: CircleAvatar(
+                      margin: const EdgeInsets.all(10),
+                      child: const CircleAvatar(
                         radius: 20,
                         backgroundImage: AssetImage('images/trener.jpg'),
                       ),
@@ -135,7 +136,7 @@ class _VideoPageState extends State<VideoPage> {
                   ],
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 10),
+                  margin: const EdgeInsets.only(left: 10),
                   alignment: Alignment.centerLeft,
                   child: Text(
                     'Видео - занятия',
@@ -145,7 +146,7 @@ class _VideoPageState extends State<VideoPage> {
                         color: Colors.black),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 VideoList(videoIds: videoIds, videoTitles: videoTitles),
               ],
             ),

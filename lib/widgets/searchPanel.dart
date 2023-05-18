@@ -1,29 +1,23 @@
-import 'package:diploma_work/widgets/foregroundWidget.dart';
-import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:diploma_work/widgets/foregroundWidget.dart';
 
-class searchPanel extends StatefulWidget {
+import 'package:flutter/material.dart';
+
+class SearchPanel extends StatefulWidget {
   
   final TextEditingController searchController;
 
-  searchPanel({required this.searchController});
+  const SearchPanel({super.key, required this.searchController});
 
   @override
-  State<searchPanel> createState() => _searchPanelState();
+  State<SearchPanel> createState() => _SearchPanelState();
 }
 
 
 
-class _searchPanelState extends State<searchPanel> {
+class _SearchPanelState extends State<SearchPanel> {
 
-  
-
-
-
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return SizedBox(
       width: 370,
       height: 50,
       child: TextField(

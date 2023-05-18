@@ -1,20 +1,19 @@
 import 'dart:async';
-
-import 'package:diploma_work/screens/HomePage.dart';
+import 'package:diploma_work/screens/main_pages/view.dart';
 import 'package:diploma_work/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
-class verifyEmail extends StatefulWidget {
-  const verifyEmail({super.key});
+class VerifyEmail extends StatefulWidget {
+  const VerifyEmail({super.key});
 
   @override
-  State<verifyEmail> createState() => _verifyEmailState();
+  State<VerifyEmail> createState() => _VerifyEmailState();
 }
 
-class _verifyEmailState extends State<verifyEmail> {
+class _VerifyEmailState extends State<VerifyEmail> {
   bool isEmailVerified = false;
   Timer? timer;
   bool canResendEmail = false;
@@ -27,7 +26,7 @@ class _verifyEmailState extends State<verifyEmail> {
     if (!isEmailVerified) {
       sendVerificationEmail();
 
-      timer = Timer.periodic(Duration(seconds: 3), (_) {
+      timer = Timer.periodic(const Duration(seconds: 3), (_) {
         checkEmailVerified();
       });
     }
@@ -57,7 +56,7 @@ class _verifyEmailState extends State<verifyEmail> {
       setState(() {
         canResendEmail = false;
       });
-      await Future.delayed(Duration(seconds: 5));
+      await Future.delayed(const Duration(seconds: 5));
       setState(() {
         canResendEmail = true;
       });

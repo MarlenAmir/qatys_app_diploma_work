@@ -1,6 +1,4 @@
-import 'package:diploma_work/screens/HomePage.dart';
-import 'package:diploma_work/screens/ProfilePage.dart';
-import 'package:diploma_work/screens/SearchPage.dart';
+import 'package:diploma_work/screens/main_pages/view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -14,7 +12,6 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -134,14 +131,14 @@ void _showModalBottomSheet(BuildContext context) {
                 indent: 185,
                 endIndent: 185,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              CircleAvatar(
+              const CircleAvatar(
                   radius: 40,
                   backgroundImage: AssetImage('images/chathelp.jpg'),
                   backgroundColor: Colors.amberAccent),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Text(
@@ -151,7 +148,7 @@ void _showModalBottomSheet(BuildContext context) {
                     fontWeight: FontWeight.bold,
                     color: Colors.black),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Text(
@@ -161,7 +158,7 @@ void _showModalBottomSheet(BuildContext context) {
                     fontWeight: FontWeight.normal,
                     color: Colors.black.withOpacity(0.5)),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(
@@ -171,7 +168,7 @@ void _showModalBottomSheet(BuildContext context) {
                     fontWeight: FontWeight.bold,
                     color: Colors.black),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -187,12 +184,12 @@ void _showModalBottomSheet(BuildContext context) {
                           String url = 'https://t.me/$username';
                           launchUrl(Uri.parse(url));
                         },
-                        child: CircleAvatar(
+                        child: const CircleAvatar(
                             radius: 30,
                             backgroundImage: AssetImage('images/telegram.jpg'),
                             backgroundColor: Colors.amberAccent),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Text(
@@ -204,7 +201,7 @@ void _showModalBottomSheet(BuildContext context) {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 40,
                   ),
                   Column(
@@ -226,7 +223,7 @@ void _showModalBottomSheet(BuildContext context) {
                           backgroundColor: Colors.white.withOpacity(0.1),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Text(

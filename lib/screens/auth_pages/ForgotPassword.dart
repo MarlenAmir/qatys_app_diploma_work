@@ -1,10 +1,7 @@
-import 'package:diploma_work/utils/utils.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:diploma_work/screens/services/auth_services/reset_password_service.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:diploma_work/utils/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -14,79 +11,59 @@ class ForgotPasswordPage extends StatefulWidget {
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
-  final formKey = GlobalKey<FormState>();
-
-  TextEditingController emailTextInputController = TextEditingController();
-
-  Future resetPassword() async {
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => Center(
-              child: CircularProgressIndicator(),
-            ));
-
-    try {
-      await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: emailTextInputController.text.trim());
-      Utils.showSnackBar('Восстановление пароля отправлено на почту');
-      Navigator.of(context).popUntil((route) => route.isFirst);
-    } on FirebaseAuthException catch (e) {
-      print(e);
-
-      Utils.showSnackBar(e.message);
-      Navigator.of(context).pop();
-    }
-  }
+  
+  late ResetPasswordService resetPasswordService = ResetPasswordService(context);
 
   @override
   void dispose() {
-    emailTextInputController.dispose();
+    resetPasswordService.emailTextInputController;
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: formKey,
+      key: resetPasswordService.formKey,
       child: Scaffold(
         body: ListView(children: [
           Column(children: [
             Container(
               alignment: Alignment.centerLeft,
               child: IconButton(
-                  icon: Icon(Icons.arrow_back, size: 25,),
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    size: 25,
+                  ),
                   onPressed: () {
                     Navigator.pop(context);
                   }),
             ),
-            Container(
-              child: Image.asset('images/logo.png'),
-            ),
-            SizedBox(height: 20),
+            Image.asset('images/logo.png'),
+            const SizedBox(height: 20),
             Text(
               'Qatys',
               style: GoogleFonts.montserrat(
-                  color: Color(0xFFDEC800),
+                  color: const Color(0xFFDEC800),
                   fontSize: 36,
                   fontWeight: FontWeight.normal),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
               'Добро пожаловать!',
               style: GoogleFonts.montserrat(
-                  color: Color(0xFF000000),
+                  color: const Color(0xFF000000),
                   fontSize: 20,
                   fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Text(
               'Держите ваши данные в безопасности!',
-              style: GoogleFonts.montserrat(color: Color(0xFF9F9F9F), fontSize: 14),
+              style: GoogleFonts.montserrat(
+                  color: const Color(0xFF9F9F9F), fontSize: 14),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
               alignment: Alignment.centerLeft,
               margin: EdgeInsets.only(left: 20),
@@ -95,10 +72,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 style: GoogleFonts.montserrat(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF000000)),
+                    color: const Color(0xFF000000)),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             SizedBox(
@@ -108,28 +85,28 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     email != null && !EmailValidator.validate(email)
                         ? "Enter a valid email"
                         : null,
-                controller: emailTextInputController,
+                controller: resetPasswordService.emailTextInputController,
                 keyboardType: TextInputType.emailAddress,
                 maxLines: 1,
                 minLines: 1,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "E-mail",
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
-                color: Color(0xFF7D82FF),
+                color: const Color(0xFF7D82FF),
               ),
               width: 370,
               child: TextButton(
                 onPressed: () {
-                  resetPassword();
+                  resetPasswordService.resetPassword();
                 },
                 child: Text(
                   'Отправить пароль',

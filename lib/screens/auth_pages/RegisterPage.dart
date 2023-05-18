@@ -33,28 +33,26 @@ class _RegisterPageState extends State<RegisterPage> {
     showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (context) => Center(
+        builder: (context) => const Center(
               child: CircularProgressIndicator(),
             ));
 
-   try {
-    final auth = FirebaseAuth.instance;
-    final UserCredential userCredential = await auth.createUserWithEmailAndPassword(
-      email: emailTextInputController.text, 
-      password: passwordTextInputController.text,
-    );
-    
-    final String uid = userCredential.user!.uid;
-    final FirebaseFirestore firestore = FirebaseFirestore.instance;
-    await firestore.collection('users').doc(uid).set({
-      'name': nameTextController.text,
-      'surname': surnameTextController.text,
-      'email': emailTextInputController.text,
-      'phone_number': phoneTextController.text,
-    });
-          
-          
-      
+    try {
+      final auth = FirebaseAuth.instance;
+      final UserCredential userCredential =
+          await auth.createUserWithEmailAndPassword(
+        email: emailTextInputController.text,
+        password: passwordTextInputController.text,
+      );
+
+      final String uid = userCredential.user!.uid;
+      final FirebaseFirestore firestore = FirebaseFirestore.instance;
+      await firestore.collection('users').doc(uid).set({
+        'name': nameTextController.text,
+        'surname': surnameTextController.text,
+        'email': emailTextInputController.text,
+        'phone_number': phoneTextController.text,
+      });
     } on FirebaseAuthException catch (e) {
       print(e);
       Utils.showSnackBar(e.message);
@@ -78,7 +76,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 100,
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(
                   'Qatys',
                   style: GoogleFonts.montserrat(
@@ -86,7 +84,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       fontSize: 36,
                       fontWeight: FontWeight.normal),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
@@ -96,7 +94,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text(
                   'Держите ваши данные в безопасности!',
                   style: GoogleFonts.montserrat(
@@ -111,10 +109,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     style: GoogleFonts.montserrat(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF000000)),
+                        color: const Color(0xFF000000)),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 SizedBox(
@@ -126,13 +124,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: nameTextController,
                     maxLines: 1,
                     minLines: 1,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: "Ваше Имя",
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 SizedBox(
                   width: 370,
                   child: TextFormField(
@@ -141,13 +139,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: surnameTextController,
                     maxLines: 1,
                     minLines: 1,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: "Ваша Фамилия",
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 SizedBox(
                   width: 370,
                   child: TextFormField(
@@ -159,13 +157,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     keyboardType: TextInputType.emailAddress,
                     maxLines: 1,
                     minLines: 1,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: "E-mail",
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 SizedBox(
@@ -177,13 +175,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: phoneTextController,
                     maxLines: 1,
                     minLines: 1,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: "Номер телефона",
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 SizedBox(
                   width: 370,
                   child: TextFormField(
@@ -204,18 +202,18 @@ class _RegisterPageState extends State<RegisterPage> {
                               _isObscure = !_isObscure;
                             });
                           }),
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       labelText: "Пароль",
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: Color(0xFF7D82FF),
+                    color: const Color(0xFF7D82FF),
                   ),
                   width: 370,
                   child: TextButton(
@@ -248,7 +246,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: Text(
                           'Login',
                           style: GoogleFonts.montserrat(
-                              color: Color(0xFF646AFF),
+                              color: const Color(0xFF646AFF),
                               fontSize: 16,
                               fontWeight: FontWeight.bold),
                         ))

@@ -1,6 +1,5 @@
-import 'package:diploma_work/screens/ForgotPassword.dart';
-import 'package:diploma_work/screens/RegisterPage.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:diploma_work/screens/auth_pages/view.dart';
+import 'package:diploma_work/screens/services/auth_services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diploma_work/main.dart';
@@ -8,9 +7,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:diploma_work/utils/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
-TextEditingController emailTextInputController = TextEditingController();
-TextEditingController passwordTextInputController = TextEditingController();
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -22,77 +18,38 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool _isObscure = true;
 
-  final formKey = GlobalKey<FormState>();
+  final AuthService authService = AuthService();
+
 
   @override
   void initState() {
-    emailTextInputController.clear();
-    passwordTextInputController.clear();
+    authService.emailTextInputController.clear();
+    authService.passwordTextInputController.clear();
     super.initState();
   }
 
-  signWithGoogle() async{
-    final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
 
-    final GoogleSignInAuthentication gAuth = await gUser!.authentication;
-
-    final credential = GoogleAuthProvider.credential(
-      accessToken: gAuth.accessToken,
-      idToken: gAuth.idToken,
-    );
-
-    return await FirebaseAuth.instance.signInWithCredential(credential);
-
-  }
-
-  
-
-  Future signIn() async {
-    final isValid = formKey.currentState!.validate();
-    if (!isValid) return;
-
-    showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => Center(
-              child: CircularProgressIndicator(),
-            ));
-
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailTextInputController.text.trim(),
-          password: passwordTextInputController.text.trim());
-    } on FirebaseAuthException catch (e) {
-      print(e);
-
-      Utils.showSnackBar(e.message);
-    }
-
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
-  }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: formKey,
+      key: authService.formKey,
       child: Scaffold(
         backgroundColor: Color(0xFFF5F5F5),
         body: ListView(
           children: [
             Column(
               children: [
-                Container(
-                  child: Image.asset('images/logo.png'),
-                ),
-                SizedBox(height: 20),
-                Text(
+                Image.asset('images/logo.png'),
+                const SizedBox(height: 20),
+                const Text(
                   'Qatys',
                   style: TextStyle(
                       color: Color(0xFFDEC800),
                       fontSize: 36,
                       fontWeight: FontWeight.normal),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
@@ -102,25 +59,25 @@ class _LoginPageState extends State<LoginPage> {
                       fontSize: 20,
                       fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text(
                   'Держите ваши данные в безопасности!',
                   style: GoogleFonts.montserrat(
                       color: Color(0xFF9F9F9F), fontSize: 14),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Container(
                   alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.only(left: 20),
+                  margin: const EdgeInsets.only(left: 20),
                   child: Text(
                     'Вход',
                     style: GoogleFonts.montserrat(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF000000)),
+                        color: const Color(0xFF000000)),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 SizedBox(
@@ -130,17 +87,17 @@ class _LoginPageState extends State<LoginPage> {
                         email != null && !EmailValidator.validate(email)
                             ? "Введите правильный E-mail"
                             : null,
-                    controller: emailTextInputController,
+                    controller: authService.emailTextInputController,
                     keyboardType: TextInputType.emailAddress,
                     maxLines: 1,
                     minLines: 1,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: "E-mail",
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 SizedBox(
@@ -149,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                     validator: (value) => value != null && value.length < 8
                         ? "Минимум 8 символов"
                         : null,
-                    controller: passwordTextInputController,
+                    controller: authService.passwordTextInputController,
                     obscureText: _isObscure,
                     maxLines: 1,
                     minLines: 1,
@@ -168,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
@@ -177,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                   width: 370,
                   child: TextButton(
                       onPressed: () {
-                        signIn();
+                        authService.signIn(context);
                       },
                       child: Text(
                         'Вход',
@@ -190,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ForgotPasswordPage()));
+                        builder: (context) => const ForgotPasswordPage()));
                   },
                   child: Text(
                     'Forgot Password?',
@@ -207,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                       color: Color(0xFF9F9F9F),
                       fontWeight: FontWeight.normal),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
@@ -219,7 +176,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: TextButton(
                     onPressed: () async {
                       try {
-                        await signWithGoogle();
+                        await authService.signWithGoogle();
                       } catch (e) {
                         print(e);
                       }
@@ -250,14 +207,14 @@ class _LoginPageState extends State<LoginPage> {
                       style: GoogleFonts.montserrat(
                         fontSize: 16,
                         fontWeight: FontWeight.normal,
-                        color: Color(0xFF9F9F9F),
+                        color: const Color(0xFF9F9F9F),
                       ),
                     ),
                     TextButton(
                         onPressed: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => RegisterPage(),
+                              builder: (context) => const RegisterPage(),
                             ),
                           );
                         },

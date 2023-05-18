@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:diploma_work/screens/footballCategory.dart';
-import 'package:diploma_work/screens/volleyballCategory.dart';
-import 'package:diploma_work/screens/basketballCategory.dart';
-import 'package:diploma_work/screens/tennisCategory.dart';
-import 'package:diploma_work/screens/tableTennisCategory.dart';
-import 'package:diploma_work/screens/hockeyCategory.dart';
+import 'view.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -149,42 +144,40 @@ class _allCategoriesState extends State<allCategories> {
                   child: Container(
                     width: 120,
                     height: 125,
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                       top: 20,
                       left: 20,
                     ),
                     decoration: BoxDecoration(
-                      color: Color(0xFF9E00FF),
+                      color: const Color(0xFF9E00FF),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: Container(
-                      child: Column(
-                        children: [
-                          SizedBox(height: 5),
-                          Container(
-                            width: 80,
-                            child: Text(
-                              'Футбольные площадки',
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.white),
-                            ),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 5),
+                        SizedBox(
+                          width: 80,
+                          child: Text(
+                            'Футбольные площадки',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.montserrat(
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white),
                           ),
-                          Divider(
-                            color: Colors.white,
-                            thickness: 1,
-                            endIndent: 0,
-                            indent: 0,
-                          ),
-                          Container(
-                            child: Image.asset('images/football.png'),
-                            width: 69,
-                            height: 69,
-                          ),
-                        ],
-                      ),
+                        ),
+                        const Divider(
+                          color: Colors.white,
+                          thickness: 1,
+                          endIndent: 0,
+                          indent: 0,
+                        ),
+                        SizedBox(
+                          width: 69,
+                          height: 69,
+                          child: Image.asset('images/football.png'),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -201,19 +194,19 @@ class _allCategoriesState extends State<allCategories> {
                   child: Container(
                     width: 120,
                     height: 125,
-                    margin: EdgeInsets.only(
+                    margin:const  EdgeInsets.only(
                       top: 20,
                       left: 20,
                     ),
                     decoration: BoxDecoration(
-                      color: Color(0xFFF7C821),
+                      color: const Color(0xFFF7C821),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Container(
                       child: Column(
                         children: [
-                          SizedBox(height: 5),
-                          Container(
+                          const SizedBox(height: 5),
+                          SizedBox(
                             width: 100,
                             child: Text(
                               'Баскетбольные площадки',
@@ -224,17 +217,17 @@ class _allCategoriesState extends State<allCategories> {
                                   color: Colors.white),
                             ),
                           ),
-                          Divider(
+                          const Divider(
                             color: Colors.white,
                             thickness: 1,
                             endIndent: 0,
                             indent: 0,
                           ),
-                          SizedBox(height: 5),
-                          Container(
-                            child: Image.asset('images/basketball.png'),
+                          const SizedBox(height: 5),
+                          SizedBox(
                             width: 60,
                             height: 60,
+                            child: Image.asset('images/basketball.png'),
                           ),
                         ],
                       ),
@@ -242,7 +235,7 @@ class _allCategoriesState extends State<allCategories> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
             ],
@@ -261,42 +254,40 @@ class _allCategoriesState extends State<allCategories> {
                   child: Container(
                     width: 120,
                     height: 125,
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                       top: 20,
                       left: 20,
                     ),
                     decoration: BoxDecoration(
-                      color: Color(0xFF3892C5),
+                      color: const Color(0xFF3892C5),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: Container(
-                      child: Column(
-                        children: [
-                          SizedBox(height: 5),
-                          Container(
-                            width: 105,
-                            child: Text(
-                              'Воллейбольные площадки',
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.white),
-                            ),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 5),
+                        SizedBox(
+                          width: 105,
+                          child: Text(
+                            'Воллейбольные площадки',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.montserrat(
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white),
                           ),
-                          Divider(
-                            color: Colors.white,
-                            thickness: 1,
-                            endIndent: 0,
-                            indent: 0,
-                          ),
-                          Container(
-                            child: Image.asset('images/volleyball.png'),
-                            width: 60,
-                            height: 60,
-                          ),
-                        ],
-                      ),
+                        ),
+                        const Divider(
+                          color: Colors.white,
+                          thickness: 1,
+                          endIndent: 0,
+                          indent: 0,
+                        ),
+                        SizedBox(
+                          child: Image.asset('images/volleyball.png'),
+                          width: 60,
+                          height: 60,
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -306,54 +297,52 @@ class _allCategoriesState extends State<allCategories> {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => tennisCategory(),
+                        builder: (context) => TennisCategory(),
                       ),
                     );
                   },
                   child: Container(
                     width: 120,
                     height: 125,
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                       top: 20,
                       left: 20,
                     ),
                     decoration: BoxDecoration(
-                      color: Color(0xFFFF8F8F),
+                      color: const Color(0xFFFF8F8F),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: Container(
-                      child: Column(
-                        children: [
-                          SizedBox(height: 5),
-                          Container(
-                            width: 100,
-                            child: Text(
-                              'Теннисные площадки',
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.white),
-                            ),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 5),
+                        SizedBox(
+                          width: 100,
+                          child: Text(
+                            'Теннисные площадки',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.montserrat(
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white),
                           ),
-                          Divider(
-                            color: Colors.white,
-                            thickness: 1,
-                            endIndent: 0,
-                            indent: 0,
-                          ),
-                          Container(
-                            child: Image.asset('images/tennis.png'),
-                            width: 60,
-                            height: 60,
-                          ),
-                        ],
-                      ),
+                        ),
+                        const Divider(
+                          color: Colors.white,
+                          thickness: 1,
+                          endIndent: 0,
+                          indent: 0,
+                        ),
+                        SizedBox(
+                          width: 60,
+                          height: 60,
+                          child: Image.asset('images/tennis.png'),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
             ],
@@ -372,42 +361,40 @@ class _allCategoriesState extends State<allCategories> {
                   child: Container(
                     width: 120,
                     height: 125,
-                    margin: EdgeInsets.only(
+                    margin:const EdgeInsets.only(
                       top: 20,
                       left: 20,
                     ),
                     decoration: BoxDecoration(
-                      color: Color(0xFF3EE07F),
+                      color: const Color(0xFF3EE07F),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: Container(
-                      child: Column(
-                        children: [
-                          SizedBox(height: 5),
-                          Container(
-                            width: 100,
-                            child: Text(
-                              'Хоккейные площадки',
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.white),
-                            ),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 5),
+                        SizedBox(
+                          width: 100,
+                          child: Text(
+                            'Хоккейные площадки',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.montserrat(
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white),
                           ),
-                          Divider(
-                            color: Colors.white,
-                            thickness: 1,
-                            endIndent: 0,
-                            indent: 0,
-                          ),
-                          Container(
-                            child: Image.asset('images/hockey.png'),
-                            width: 69,
-                            height: 69,
-                          ),
-                        ],
-                      ),
+                        ),
+                        const Divider(
+                          color: Colors.white,
+                          thickness: 1,
+                          endIndent: 0,
+                          indent: 0,
+                        ),
+                        SizedBox(
+                          width: 69,
+                          height: 69,
+                          child: Image.asset('images/hockey.png'),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -424,47 +411,45 @@ class _allCategoriesState extends State<allCategories> {
                   child: Container(
                     width: 120,
                     height: 125,
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                       top: 20,
                       left: 20,
                     ),
                     decoration: BoxDecoration(
-                      color: Color(0xFF9E00FF),
+                      color: const Color(0xFF9E00FF),
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: Container(
-                      child: Column(
-                        children: [
-                          SizedBox(height: 5),
-                          Container(
-                            width: 100,
-                            child: Text(
-                              'Настольные площадки',
-                              textAlign: TextAlign.center,
-                              style: GoogleFonts.montserrat(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.white),
-                            ),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 5),
+                        SizedBox(
+                          width: 100,
+                          child: Text(
+                            'Настольные площадки',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.montserrat(
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white),
                           ),
-                          Divider(
-                            color: Colors.white,
-                            thickness: 1,
-                            endIndent: 0,
-                            indent: 0,
-                          ),
-                          Container(
-                            child: Image.asset('images/table-tennis.png'),
-                            width: 69,
-                            height: 69,
-                          ),
-                        ],
-                      ),
+                        ),
+                        const Divider(
+                          color: Colors.white,
+                          thickness: 1,
+                          endIndent: 0,
+                          indent: 0,
+                        ),
+                        SizedBox(
+                          width: 69,
+                          height: 69,
+                          child: Image.asset('images/table-tennis.png'),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
             ],

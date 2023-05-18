@@ -1,9 +1,5 @@
-import 'package:diploma_work/widgets/eventsWidget.dart';
-import 'package:diploma_work/widgets/foregroundWidget.dart';
-import 'package:diploma_work/widgets/tournamentWidget.dart';
+import 'package:diploma_work/widgets/view.dart';
 import 'package:flutter/material.dart';
-import 'package:diploma_work/widgets/searchPanel.dart';
-import 'package:diploma_work/widgets/BottomNavBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,6 +7,8 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePage();
 }
@@ -69,8 +67,8 @@ class _HomePage extends State<HomePage> {
                 Row(
                   children: [
                     Container(
-                      margin: EdgeInsets.all(20),
-                      child: CircleAvatar(
+                      margin: const EdgeInsets.all(20),
+                      child: const CircleAvatar(
                         radius: 20,
                         backgroundImage: AssetImage('images/emoji.png'),
                       ),
@@ -94,7 +92,7 @@ class _HomePage extends State<HomePage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 120,
                     ),
                     GestureDetector(
@@ -108,12 +106,12 @@ class _HomePage extends State<HomePage> {
                     )
                   ],
                 ),
-                searchPanel(searchController: searchController),
-                SizedBox(height: 20),
+                SearchPanel(searchController: searchController),
+                const SizedBox(height: 20),
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Color(0xFF3EE07F),
+                    color: const Color(0xFF3EE07F),
                   ),
                   width: 370,
                   child: TextButton(
@@ -129,12 +127,12 @@ class _HomePage extends State<HomePage> {
                             fontSize: 20),
                       )),
                 ),
-                eventWidget(),
-                SizedBox(
+                const EventWidget(),
+                const SizedBox(
                   height: 20,
                 ),
                 Container(
-                    margin: EdgeInsets.only(left: 20),
+                    margin: const EdgeInsets.only(left: 20),
                     alignment: Alignment.centerLeft,
                     child: Text(
                       'Популярные',
@@ -143,12 +141,12 @@ class _HomePage extends State<HomePage> {
                           fontSize: 16,
                           fontWeight: FontWeight.normal),
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Column(
                   children: [
-                    foregroundWidget(
+                    ForegroundWidget(
                       searchController: searchController,
                     ),
                   ],
@@ -158,7 +156,7 @@ class _HomePage extends State<HomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }

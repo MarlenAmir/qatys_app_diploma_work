@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:diploma_work/screens/BookingPage.dart';
 import 'package:diploma_work/widgets/searchPanel.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:diploma_work/screens/firebaseData.dart';
+import 'package:diploma_work/screens/model/firebaseData.dart';
 
 
 class volleyballCategory extends StatefulWidget {
@@ -17,7 +17,7 @@ class _volleyballCategoryState extends State<volleyballCategory> {
     return Scaffold(
       body: ListView(
         children: [
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           StreamBuilder<QuerySnapshot>(
             stream:
                 FirebaseFirestore.instance.collection('volleyball_foregrounds').snapshots(),
@@ -28,7 +28,7 @@ class _volleyballCategoryState extends State<volleyballCategory> {
               }
               switch (snapshot.connectionState) {
                 case ConnectionState.waiting:
-                  return Text('Loading...');
+                  return const Text('Loading...');
                 default:
                   return SingleChildScrollView(
                    
@@ -55,7 +55,7 @@ class _volleyballCategoryState extends State<volleyballCategory> {
                               Container(
                                 width: double.infinity,
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(10),
                                       topRight: Radius.circular(10)),
                                   child: Image.network(
@@ -64,13 +64,13 @@ class _volleyballCategoryState extends State<volleyballCategory> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 20,
                                   ),
                                   Text(
@@ -80,7 +80,7 @@ class _volleyballCategoryState extends State<volleyballCategory> {
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Image.asset(
@@ -90,12 +90,12 @@ class _volleyballCategoryState extends State<volleyballCategory> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 18,
                                   ),
                                   Image.asset(
@@ -103,7 +103,7 @@ class _volleyballCategoryState extends State<volleyballCategory> {
                                     height: 20,
                                     width: 20,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
@@ -114,12 +114,12 @@ class _volleyballCategoryState extends State<volleyballCategory> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 18,
                                   ),
                                   Image.asset(
@@ -127,7 +127,7 @@ class _volleyballCategoryState extends State<volleyballCategory> {
                                     height: 20,
                                     width: 20,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
@@ -138,12 +138,12 @@ class _volleyballCategoryState extends State<volleyballCategory> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 18,
                                   ),
                                   Image.asset(
@@ -151,7 +151,7 @@ class _volleyballCategoryState extends State<volleyballCategory> {
                                     height: 20,
                                     width: 20,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
@@ -162,12 +162,11 @@ class _volleyballCategoryState extends State<volleyballCategory> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               TextButton(
-                                onPressed: () {
-                                  
+                                onPressed: () {   
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -186,7 +185,7 @@ class _volleyballCategoryState extends State<volleyballCategory> {
                                   )),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                             ],

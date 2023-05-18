@@ -5,7 +5,7 @@ class VideoList extends StatelessWidget {
   final List<String> videoIds;
   final List<String> videoTitles;
 
-  VideoList({required this.videoIds, required this.videoTitles});
+  const VideoList({super.key, required this.videoIds, required this.videoTitles});
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +36,10 @@ class VideoList extends StatelessWidget {
 class VideoPlayerScreen extends StatefulWidget {
   final String videoId;
 
-  VideoPlayerScreen({required this.videoId});
+  const VideoPlayerScreen({super.key, required this.videoId});
 
   @override
+  // ignore: library_private_types_in_public_api
   _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
 }
 
@@ -50,7 +51,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     super.initState();
     _controller = YoutubePlayerController(
       initialVideoId: widget.videoId,
-      flags: YoutubePlayerFlags(
+      flags: const YoutubePlayerFlags(
         autoPlay: true,
         mute: false,
       ),

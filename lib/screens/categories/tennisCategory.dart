@@ -4,28 +4,22 @@ import 'package:diploma_work/screens/BookingPage.dart';
 import 'package:diploma_work/widgets/searchPanel.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-
-class tennisCategory extends StatefulWidget {
-
-
-
-
-
+class TennisCategory extends StatefulWidget {
   @override
-  State<tennisCategory> createState() => _tennisCategoryState();
+  State<TennisCategory> createState() => _TennisCategoryState();
 }
 
-class _tennisCategoryState extends State<tennisCategory> {
+class _TennisCategoryState extends State<TennisCategory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
         children: [
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           StreamBuilder<QuerySnapshot>(
-            stream:
-                FirebaseFirestore.instance.collection('tennis_foregrounds').snapshots(),
+            stream: FirebaseFirestore.instance
+                .collection('tennis_foregrounds')
+                .snapshots(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
@@ -36,14 +30,13 @@ class _tennisCategoryState extends State<tennisCategory> {
                   return Text('Loading...');
                 default:
                   return SingleChildScrollView(
-                   
                     scrollDirection: Axis.vertical,
                     child: Column(
                       children:
                           snapshot.data!.docs.map((DocumentSnapshot document) {
-                      Map<String, dynamic> data =
-                          document.data() as Map<String, dynamic>;
-                        
+                        Map<String, dynamic> data =
+                            document.data() as Map<String, dynamic>;
+
                         return Container(
                           margin: EdgeInsets.all(20),
                           decoration: BoxDecoration(
@@ -54,7 +47,7 @@ class _tennisCategoryState extends State<tennisCategory> {
                               Container(
                                 width: double.infinity,
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(10),
                                       topRight: Radius.circular(10)),
                                   child: Image.network(
@@ -63,13 +56,13 @@ class _tennisCategoryState extends State<tennisCategory> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 20,
                                   ),
                                   Text(
@@ -79,7 +72,7 @@ class _tennisCategoryState extends State<tennisCategory> {
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Image.asset(
@@ -89,12 +82,12 @@ class _tennisCategoryState extends State<tennisCategory> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 18,
                                   ),
                                   Image.asset(
@@ -102,7 +95,7 @@ class _tennisCategoryState extends State<tennisCategory> {
                                     height: 20,
                                     width: 20,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
@@ -113,12 +106,12 @@ class _tennisCategoryState extends State<tennisCategory> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 18,
                                   ),
                                   Image.asset(
@@ -126,7 +119,7 @@ class _tennisCategoryState extends State<tennisCategory> {
                                     height: 20,
                                     width: 20,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
@@ -137,12 +130,12 @@ class _tennisCategoryState extends State<tennisCategory> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 18,
                                   ),
                                   Image.asset(
@@ -150,7 +143,7 @@ class _tennisCategoryState extends State<tennisCategory> {
                                     height: 20,
                                     width: 20,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
@@ -161,13 +154,11 @@ class _tennisCategoryState extends State<tennisCategory> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               TextButton(
-                                onPressed: () {
-                                  
-                                },
+                                onPressed: () {},
                                 child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
@@ -185,7 +176,7 @@ class _tennisCategoryState extends State<tennisCategory> {
                                   )),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                             ],

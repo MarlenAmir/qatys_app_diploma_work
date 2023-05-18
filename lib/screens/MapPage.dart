@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:location/location.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:diploma_work/screens/firebaseData.dart';
-
+import 'package:diploma_work/screens/model/firebaseData.dart';
 
 class MapPage extends StatefulWidget {
   @override
@@ -13,8 +11,8 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  late GoogleMapController mapController;
-  late LocationData _currentLocation;
+  GoogleMapController? mapController;
+  LocationData? _currentLocation;
 
   void _getUserLocation() async {
     Location location = Location();
@@ -46,7 +44,7 @@ class _MapPageState extends State<MapPage> {
 
   List<Marker> markers = [];
 
-  static final CameraPosition initialPosition = CameraPosition(
+  static const CameraPosition initialPosition = CameraPosition(
     target: LatLng(43.238949, 76.889709),
     zoom: 15,
   );
@@ -110,5 +108,3 @@ class _MapPageState extends State<MapPage> {
     );
   }
 }
-
-

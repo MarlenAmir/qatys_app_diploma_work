@@ -1,11 +1,8 @@
 import 'package:diploma_work/screens/MapPage.dart';
 import 'package:diploma_work/screens/VideoPage.dart';
-import 'package:diploma_work/widgets/foregroundWidget.dart';
-import 'package:diploma_work/widgets/foregroundWidget.dart';
-import 'package:diploma_work/screens/allCategories.dart';
-import 'package:diploma_work/widgets/searchPanel.dart';
+import 'package:diploma_work/screens/categories/allCategories.dart';
 import 'package:flutter/material.dart';
-import 'package:diploma_work/widgets/BottomNavBar.dart';
+import 'package:diploma_work/widgets/view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
@@ -74,8 +71,8 @@ class _SearchPageState extends State<SearchPage> {
                 Row(
                   children: [
                     Container(
-                      margin: EdgeInsets.all(20),
-                      child: CircleAvatar(
+                      margin: const EdgeInsets.all(20),
+                      child: const CircleAvatar(
                         radius: 20,
                         backgroundImage: AssetImage('images/emoji.png'),
                       ),
@@ -99,7 +96,7 @@ class _SearchPageState extends State<SearchPage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 120,
                     ),
                     GestureDetector(
@@ -113,10 +110,10 @@ class _SearchPageState extends State<SearchPage> {
                     )
                   ],
                 ),
-                searchPanel(
+                SearchPanel(
                   searchController: searchController,
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 InkWell(
                   onTap: () {
                     Navigator.of(context).push(
@@ -125,7 +122,7 @@ class _SearchPageState extends State<SearchPage> {
                   child: Row(
                     children: [
                       Container(
-                          margin: EdgeInsets.only(left: 20, right: 20),
+                          margin: const EdgeInsets.only(left: 20, right: 20),
                           child: Image.asset('images/Map.png')),
                       Text(
                         'На карте',
@@ -135,7 +132,7 @@ class _SearchPageState extends State<SearchPage> {
                     ],
                   ),
                 ),
-                Divider(
+                const Divider(
                   color: Colors.black,
                   thickness: 1,
                   endIndent: 20,
@@ -152,7 +149,7 @@ class _SearchPageState extends State<SearchPage> {
                         margin: EdgeInsets.only(left: 20),
                         child: Image.asset('images/favorites.png'),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
                       Text(
@@ -163,7 +160,7 @@ class _SearchPageState extends State<SearchPage> {
                     ],
                   ),
                 ),
-                Divider(
+                const Divider(
                   color: Colors.black,
                   thickness: 1,
                   endIndent: 20,
@@ -176,14 +173,14 @@ class _SearchPageState extends State<SearchPage> {
                   },
                   child: Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
                       Container(
                         margin: EdgeInsets.only(left: 20, top: 10, bottom: 5),
                         child: Image.asset('images/videos.png'),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
                       Text(
@@ -194,13 +191,13 @@ class _SearchPageState extends State<SearchPage> {
                     ],
                   ),
                 ),
-                Divider(
+                const Divider(
                   color: Colors.black,
                   thickness: 1,
                   endIndent: 20,
                   indent: 20,
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Row(
                   children: [
                     Container(
@@ -214,7 +211,7 @@ class _SearchPageState extends State<SearchPage> {
                             color: Colors.black),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Image.asset('images/check.png'),
@@ -224,7 +221,7 @@ class _SearchPageState extends State<SearchPage> {
                   scrollDirection: Axis.vertical,
                   child: Column(
                     children: [
-                      foregroundWidget(searchController: searchController),
+                      ForegroundWidget(searchController: searchController),
                     ],
                   ),
                 )
@@ -233,7 +230,7 @@ class _SearchPageState extends State<SearchPage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar:const BottomNavBar(),
     );
   }
 }

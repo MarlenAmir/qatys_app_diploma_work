@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:booking_calendar/booking_calendar.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:diploma_work/screens/BookingPage.dart';
+
 
 
 class BookingDialog extends StatefulWidget {
@@ -74,8 +68,8 @@ class _BookingDialogState extends State<BookingDialog> {
                     dateController.text,
                     startTimeController.text,
                     endTimeController.text);
-                final snackBar = SnackBar(
-                  content: const Text('Заявка успешно отправлена!', style: TextStyle(color: Colors.white),),
+                const snackBar = SnackBar(
+                  content: Text('Заявка успешно отправлена!', style: TextStyle(color: Colors.white),),
                   backgroundColor: Colors.green,
                 );
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -83,7 +77,7 @@ class _BookingDialogState extends State<BookingDialog> {
               },
             ),
           ],
-          content: Container(
+          content: SizedBox(
             width: double.infinity,
             height: 460,
             child: Form(
@@ -92,7 +86,7 @@ class _BookingDialogState extends State<BookingDialog> {
                 children: [
                   TextFormField(
                     controller: dateController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       icon: Icon(Icons.calendar_today), //icon of text field
                       labelText: "Выберите дату",
                     ),
@@ -111,12 +105,12 @@ class _BookingDialogState extends State<BookingDialog> {
                       }
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
                     controller: startTimeController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       icon: Icon(Icons.calendar_today), //icon of text field
                       labelText: "Выберите время начала",
                     ),
@@ -146,12 +140,12 @@ class _BookingDialogState extends State<BookingDialog> {
                       }
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
                     controller: endTimeController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       icon: Icon(Icons.calendar_today),
                       labelText: "Выберите время конца",
                     ),
@@ -179,7 +173,7 @@ class _BookingDialogState extends State<BookingDialog> {
                       }
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
@@ -191,14 +185,14 @@ class _BookingDialogState extends State<BookingDialog> {
                       }
                       return null;
                     },
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: "Имя",
                     ),
                     controller: nameController,
                     keyboardType: TextInputType.name,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
@@ -210,20 +204,20 @@ class _BookingDialogState extends State<BookingDialog> {
                     },
                     maxLines: 1,
                     minLines: 1,
-                    decoration: InputDecoration(
+                    decoration:const  InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: "Номер телефона",
                     ),
                     controller: phoneController,
                     keyboardType: TextInputType.phone,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   TextFormField(
                     maxLines: 1,
                     minLines: 1,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: "E-mail",
                     ),

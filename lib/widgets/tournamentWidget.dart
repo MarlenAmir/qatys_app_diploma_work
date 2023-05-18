@@ -15,10 +15,13 @@ class _TournamentWidgetState extends State<TournamentWidget> {
     return Scaffold(
       body: ListView(
         children: [
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           StreamBuilder<QuerySnapshot>(
-            stream:
-                FirebaseFirestore.instance.collection('tournament').doc('tournamentId').collection('tournaments').snapshots(),
+            stream: FirebaseFirestore.instance
+                .collection('tournament')
+                .doc('tournamentId')
+                .collection('tournaments')
+                .snapshots(),
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasError) {
@@ -26,7 +29,7 @@ class _TournamentWidgetState extends State<TournamentWidget> {
               }
               switch (snapshot.connectionState) {
                 case ConnectionState.waiting:
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 default:
                   return SingleChildScrollView(
                     scrollDirection: Axis.vertical,
@@ -37,7 +40,7 @@ class _TournamentWidgetState extends State<TournamentWidget> {
                             document.data() as Map<String, dynamic>;
 
                         return Container(
-                          margin: EdgeInsets.all(20),
+                          margin: const EdgeInsets.all(20),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: Color.fromARGB(255, 238, 240, 241)),
@@ -46,7 +49,7 @@ class _TournamentWidgetState extends State<TournamentWidget> {
                               Container(
                                 width: double.infinity,
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(10),
                                       topRight: Radius.circular(10)),
                                   child: Image.network(
@@ -55,13 +58,13 @@ class _TournamentWidgetState extends State<TournamentWidget> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 20,
                                   ),
                                   Text(
@@ -71,7 +74,7 @@ class _TournamentWidgetState extends State<TournamentWidget> {
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Image.asset(
@@ -81,12 +84,12 @@ class _TournamentWidgetState extends State<TournamentWidget> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 18,
                                   ),
                                   Image.asset(
@@ -94,7 +97,7 @@ class _TournamentWidgetState extends State<TournamentWidget> {
                                     height: 20,
                                     width: 20,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
@@ -105,12 +108,12 @@ class _TournamentWidgetState extends State<TournamentWidget> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 18,
                                   ),
                                   Image.asset(
@@ -118,7 +121,7 @@ class _TournamentWidgetState extends State<TournamentWidget> {
                                     height: 20,
                                     width: 20,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
@@ -129,12 +132,12 @@ class _TournamentWidgetState extends State<TournamentWidget> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 18,
                                   ),
                                   Image.asset(
@@ -142,7 +145,7 @@ class _TournamentWidgetState extends State<TournamentWidget> {
                                     height: 20,
                                     width: 20,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
@@ -155,7 +158,7 @@ class _TournamentWidgetState extends State<TournamentWidget> {
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 18,
                                   ),
                                   Image.asset(
@@ -163,7 +166,7 @@ class _TournamentWidgetState extends State<TournamentWidget> {
                                     height: 20,
                                     width: 20,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
@@ -174,7 +177,7 @@ class _TournamentWidgetState extends State<TournamentWidget> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               TextButton(
@@ -182,7 +185,7 @@ class _TournamentWidgetState extends State<TournamentWidget> {
                                 child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
-                                    color: Color(0xFF646AFF),
+                                    color: const Color(0xFF646AFF),
                                   ),
                                   width: 340,
                                   height: 40,
@@ -196,7 +199,7 @@ class _TournamentWidgetState extends State<TournamentWidget> {
                                   )),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                             ],
