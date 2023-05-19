@@ -56,6 +56,8 @@ dependencies:
   cached_network_image: ^3.2.3
   shared_preferences: ^2.1.1
   provider: ^6.0.5
+  json_annotation: ^4.8.1
+  table_calendar: ^3.0.8
     
 
 dev_dependencies:
