@@ -171,7 +171,7 @@ class BookingPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) =>  BookingDialog(),
+                          builder: (context) =>  BookingDialog(firebaseData),
                         ),
                       );
                     },

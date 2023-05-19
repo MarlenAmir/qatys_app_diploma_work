@@ -3,16 +3,36 @@ import 'package:booking_calendar/booking_calendar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+
+import '../model/firebaseData.dart';
+
 
 class BookingDialog extends StatefulWidget {
+   BookingDialog(this.firebaseData);
+  final FirebaseData firebaseData;
+ 
+
   @override
   _BookingDialogState createState() => _BookingDialogState();
 }
 
 class _BookingDialogState extends State<BookingDialog> {
+ 
+
   late DateTime _selectedDate;
   late TimeOfDay _startTime;
   late TimeOfDay _endTime;
+  String name = "";
+  String? surname;
+  String? email;
+  String phoneNumber = "";
+
+  
+
+
+  
 
   @override
   void initState() {
@@ -20,6 +40,7 @@ class _BookingDialogState extends State<BookingDialog> {
     _selectedDate = DateTime.now();
     _startTime = TimeOfDay.now();
     _endTime = TimeOfDay.now();
+    loadData();
   }
 
   void _selectDate(DateTime date) {
@@ -39,68 +60,109 @@ class _BookingDialogState extends State<BookingDialog> {
       _endTime = time;
     });
   }
+  Future<void> loadData() async {
+    try {
+      final auth = FirebaseAuth.instance;
+      final User? user = auth.currentUser;
+      if (user != null) {
+        final FirebaseFirestore firestore = FirebaseFirestore.instance;
+        final DocumentSnapshot snapshot =
+            await firestore.collection('users').doc(user.uid).get();
+        setState(() {
+          name = snapshot.get('name');
+          surname = snapshot.get('surname');
+          email = snapshot.get('email');
+          phoneNumber = snapshot.get('phone_number');
+        });
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: ListView(
+        children: [Column(
+          children: [
+            SizedBox(height:20),
+            TableCalendar(
+              calendarFormat: CalendarFormat.month,
+              onDaySelected: (date, _) => _selectDate(date),
+              firstDay: DateTime.utc(2010, 10, 16),
+              lastDay: DateTime.utc(2030, 3, 14),
+              focusedDay: _selectedDate,
+              selectedDayPredicate: (day) {
+                return isSameDay(day, _selectedDate);
+              },
+                
+            ),
+            ListTile(
+              title: Text('Start Time'),
+              trailing: Text(_startTime.format(context)),
+              onTap: () {
+                DatePicker.showTimePicker(
+                  locale: LocaleType.ru, // Установите локаль на русский
       
-      body: Column(
-        children: [
-          SizedBox(height:20),
-          TableCalendar(
-            calendarFormat: CalendarFormat.month,
-            onDaySelected: (date, _) => _selectDate(date),
-            firstDay: DateTime.utc(2010, 10, 16),
-            lastDay: DateTime.utc(2030, 3, 14),
-            focusedDay: _selectedDate,
-            selectedDayPredicate: (day) {
-              return isSameDay(day, _selectedDate);
-            },
+                  context,
+                  currentTime: DateTime.now(),
+                  onConfirm: (time) =>
+                      _selectStartTime(TimeOfDay.fromDateTime(time)),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('End Time'),
+              trailing: Text(_endTime.format(context)),
+              onTap: () {
+                DatePicker.showTimePicker(
+                  context,
+                  currentTime: DateTime.now(),
+                  onConfirm: (time) =>
+                      _selectEndTime(TimeOfDay.fromDateTime(time)),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Поле :'),
+              trailing: Text(widget.firebaseData.name),
               
-          ),
-          ListTile(
-            title: Text('Start Time'),
-            trailing: Text(_startTime.format(context)),
-            onTap: () {
-              DatePicker.showTimePicker(
-                locale: LocaleType.ru, // Установите локаль на русский
+            ),
+            ListTile(
+              title: Text('Имя :'),
+              trailing: Text(name),
+              
+            ),
+            ListTile(
+              title: Text('Номер :'),
+              trailing: Text(phoneNumber),
+              
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if (_selectedDate != null &&
+                    _startTime != null &&
+                    _endTime != null) {
+                  // Perform booking or other actions with the selected date, start time, and end time
+                  print('Selected Date: $_selectedDate');
+                  print('Start Time: $_startTime');
+                  print('End Time: $_endTime');
+                  print('Name : $name');
+                  print('Поле : ${widget.firebaseData.name}');
+                                    print('Name : $phoneNumber');
 
-                context,
-                currentTime: DateTime.now(),
-                onConfirm: (time) =>
-                    _selectStartTime(TimeOfDay.fromDateTime(time)),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('End Time'),
-            trailing: Text(_endTime!.format(context)),
-            onTap: () {
-              DatePicker.showTimePicker(
-                context,
-                currentTime: DateTime.now(),
-                onConfirm: (time) =>
-                    _selectEndTime(TimeOfDay.fromDateTime(time)),
-              );
-            },
-          ),
-          ElevatedButton(
-            onPressed: () {
-              if (_selectedDate != null &&
-                  _startTime != null &&
-                  _endTime != null) {
-                // Perform booking or other actions with the selected date, start time, and end time
-                print('Selected Date: $_selectedDate');
-                print('Start Time: $_startTime');
-                print('End Time: $_endTime');
-              } else {
-                // Handle case where any of the values is not selected
-                print('Please select all values');
-              }
-            },
-            child: Text('Book'),
-          ),
-        ],
+
+                } else {
+                  // Handle case where any of the values is not selected
+                  print('Please select all values');
+                }
+              },
+              child: Text("Забронировать"),
+            ),
+          ],
+        ),
+        ]
       ),
     );
   }
