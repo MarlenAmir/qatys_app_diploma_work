@@ -6,21 +6,17 @@ import 'package:diploma_work/utils/utils.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting('ru_RU');
   await Firebase.initializeApp();
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider<AvatarProvider>(
-          create: (_) => AvatarProvider(),
-        ),
-      ],
-    
-    child: const MyApp(
-    )
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider<AvatarProvider>(
+        create: (_) => AvatarProvider(),
+      ),
+    ],
+    child: const MyApp(),
   ));
 }
 

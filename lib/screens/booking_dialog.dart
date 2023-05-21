@@ -1,3 +1,4 @@
+import 'package:diploma_work/screens/paymentPage.dart';
 import 'package:flutter/material.dart';
 import 'package:booking_calendar/booking_calendar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -153,6 +154,7 @@ class _BookingDialogState extends State<BookingDialog> {
                                     print('Name : $phoneNumber');
 
 
+                 
                 } else {
                   // Handle case where any of the values is not selected
                   print('Please select all values');
