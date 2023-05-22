@@ -5,6 +5,9 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../model/firebase_data.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class BookingDialog extends StatefulWidget {
   BookingDialog(this.firebaseData);
@@ -24,6 +27,9 @@ class _BookingDialogState extends State<BookingDialog> {
   String? surname;
   String? email;
   String phoneNumber = "";
+  
+  
+ 
 
   @override
   void initState() {
@@ -132,7 +138,7 @@ class _BookingDialogState extends State<BookingDialog> {
                 if (_selectedDate != null &&
                     _startTime != null &&
                     _endTime != null) {
-                  paymentService.makePayment();
+                 
                   // Perform booking or other actions with the selected date, start time, and end time
                   print('Selected Date: $_selectedDate');
                   print('Start Time: $_startTime');
@@ -144,6 +150,7 @@ class _BookingDialogState extends State<BookingDialog> {
                   // Handle case where any of the values is not selected
                   print('Please select all values');
                 }
+                paymentService.makePayment();
               },
               child: Text("Оплатить"),
             ),
