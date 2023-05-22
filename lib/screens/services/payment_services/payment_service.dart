@@ -41,8 +41,8 @@ class PaymentService{
   createPaymentIntent() async {
     try {
       Map<String, dynamic> body = {
-        "amount": "8000",
-        "currency": "тг",
+        "amount": "2000",
+        "currency": "USD",
       };
 
       http.Response response = await http.post(
