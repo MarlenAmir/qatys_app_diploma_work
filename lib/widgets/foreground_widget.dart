@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:diploma_work/screens/BookingPage.dart';
+import 'package:diploma_work/screens/booking_page.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:diploma_work/model/firebaseData.dart';
+import 'package:diploma_work/model/firebase_data.dart';
 
 class ForegroundWidget extends StatefulWidget {
   const ForegroundWidget({super.key, required this.searchController});
@@ -54,7 +54,8 @@ class _ForegroundWidgetState extends State<ForegroundWidget> {
                           playersQuantity: data['playersQuantity'],
                           location: data['location'],
                           coatingType: data['coatingType'],
-                          description: data['description']);
+                          description: data['description'],
+                          price: data['price']);
                       return Container(
                         width: double.infinity,
                         margin: const EdgeInsets.all(20),

@@ -6,6 +6,7 @@ class FirebaseData {
   final String playersQuantity;
   final String coatingType;
   final String description;
+  final String price;
  
 
   FirebaseData(
@@ -15,5 +16,6 @@ class FirebaseData {
       required this.playersQuantity,
       required this.coatingType,
       required this.description,
+      required this.price
       });
 }

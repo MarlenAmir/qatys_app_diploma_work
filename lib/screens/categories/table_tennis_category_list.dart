@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:diploma_work/screens/BookingPage.dart';
-import 'package:diploma_work/widgets/searchPanel.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 

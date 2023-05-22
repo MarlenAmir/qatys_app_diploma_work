@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:diploma_work/screens/BookingPage.dart';
-import 'package:diploma_work/widgets/searchPanel.dart';
+import 'package:diploma_work/screens/booking_page.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:diploma_work/model/firebaseData.dart';
+import 'package:diploma_work/model/firebase_data.dart';
 
 
 class basketballCategory extends StatefulWidget {
@@ -41,6 +40,7 @@ class _basketballCategoryState extends State<basketballCategory> {
                       Map<String, dynamic> data =
                           document.data() as Map<String, dynamic>;  
                           FirebaseData firebaseData = FirebaseData(
+                            price: data['price'],
                             image: data['image_url'],
                             name: data['name'],
                             playersQuantity: data['playersQuantity'],

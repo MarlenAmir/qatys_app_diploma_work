@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:diploma_work/widgets/videoList.dart';
+import 'package:diploma_work/widgets/view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 

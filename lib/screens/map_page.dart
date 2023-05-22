@@ -1,9 +1,9 @@
-import 'package:diploma_work/screens/BookingPage.dart';
+import 'package:diploma_work/screens/booking_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:location/location.dart';
-import 'package:diploma_work/model/firebaseData.dart';
+import 'package:diploma_work/model/firebase_data.dart';
 
 class MapPage extends StatefulWidget {
   @override
@@ -64,6 +64,7 @@ class _MapPageState extends State<MapPage> {
         Map<String, dynamic> data = document.data() as Map<String, dynamic>;
 
         FirebaseData firebaseData = FirebaseData(
+            price: data['price'],
             image: data['image_url'],
             name: data['name'],
             location: data['location'],

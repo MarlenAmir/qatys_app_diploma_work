@@ -1,3 +1,3 @@
-export 'homePage.dart';
-export 'profilePage.dart';
-export 'searchPage.dart';
+export 'home_page.dart';
+export 'profile_page.dart';
+export 'search_page.dart';

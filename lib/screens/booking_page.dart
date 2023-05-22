@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:diploma_work/screens/BookingDialog.dart';
+import 'package:diploma_work/screens/booking_dialog.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:diploma_work/model/firebaseData.dart';
+import 'package:diploma_work/model/firebase_data.dart';
 
 class BookingPage extends StatelessWidget {
   final FirebaseData firebaseData;

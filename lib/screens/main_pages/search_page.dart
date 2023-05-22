@@ -1,5 +1,5 @@
-import 'package:diploma_work/screens/MapPage.dart';
-import 'package:diploma_work/screens/VideoPage.dart';
+import 'package:diploma_work/screens/map_page.dart';
+import 'package:diploma_work/screens/video_page.dart';
 import 'package:diploma_work/screens/categories/view.dart';
 import 'package:flutter/material.dart';
 import 'package:diploma_work/widgets/view.dart';
