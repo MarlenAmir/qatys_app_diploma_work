@@ -60,6 +60,7 @@ dependencies:
   table_calendar: ^3.0.8
   flutter_stripe: ^9.2.0
   http: ^0.13.6
+  shimmer: ^3.0.0
     
 
 dev_dependencies:
