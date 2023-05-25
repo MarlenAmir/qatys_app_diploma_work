@@ -1,3 +1,4 @@
+import 'package:diploma_work/screens/auth_pages/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:diploma_work/main.dart';
@@ -5,17 +6,25 @@ import 'package:diploma_work/utils/utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegisterService {
-  RegisterService(this.context);
+  RegisterService({required this.context, required this.emailTextInputController, required this.passwordTextInputController, required this.nameTextController, required this.surnameTextController, required this.phoneTextController});
 
   final BuildContext context;
 
   final formKey = GlobalKey<FormState>();
 
-  TextEditingController emailTextInputController = TextEditingController();
-  TextEditingController passwordTextInputController = TextEditingController();
-  TextEditingController phoneTextController = TextEditingController();
-  TextEditingController nameTextController = TextEditingController();
-  TextEditingController surnameTextController = TextEditingController();
+  RegisterPage registerPage = RegisterPage();
+
+  final TextEditingController emailTextInputController;
+    final TextEditingController passwordTextInputController;
+
+  final TextEditingController nameTextController;
+
+  final TextEditingController surnameTextController;
+
+  final TextEditingController phoneTextController;
+
+
+  
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -34,7 +43,7 @@ class RegisterService {
       final auth = FirebaseAuth.instance;
       final UserCredential userCredential =
           await auth.createUserWithEmailAndPassword(
-        email: emailTextInputController.text,
+        email:  emailTextInputController.text,
         password: passwordTextInputController.text,
       );
 

@@ -12,12 +12,10 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-
   @override
   Widget build(BuildContext context) {
     return GNav(
       gap: 20,
-      
       tabs: [
         GButton(
           icon: Icons.home,
@@ -44,8 +42,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
         GButton(
           icon: Icons.chat_bubble_outline_rounded,
           text: 'Chat',
-          onPressed: (){
-             _showModalBottomSheet(context);
+          onPressed: () {
+            _showModalBottomSheet(context);
           },
         ),
         GButton(
@@ -61,8 +59,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
         ),
       ],
     );
-
-
   }
 }
 
@@ -118,6 +114,8 @@ GNav(
  */
 
 void _showModalBottomSheet(BuildContext context) {
+
+
   showModalBottomSheet(
       context: context,
       builder: (context) {
@@ -177,12 +175,14 @@ void _showModalBottomSheet(BuildContext context) {
                   Column(
                     children: [
                       InkWell(
-                        onTap: () {
-                          String username =
-                              'Marlen7'; // Replace with the username of the Telegram user you want to chat with
-
-                          String url = 'https://t.me/$username';
-                          launchUrl(Uri.parse(url));
+                        onTap: () async {
+                          
+                          String url =
+                              "https://t.me/Marlen7";
+                          if (await canLaunchUrl(Uri.parse(url))) {
+                            await launchUrl(Uri.parse(url),
+                                mode: LaunchMode.externalApplication);
+                          }
                         },
                         child: const CircleAvatar(
                             radius: 30,
@@ -207,15 +207,14 @@ void _showModalBottomSheet(BuildContext context) {
                   Column(
                     children: [
                       InkWell(
-                        onTap: () {
-                          String phoneNumber =
-                              '87755296850'; // Replace with the phone number you want to chat with
-                          String message =
-                              'Привет, у меня вопрос'; // Replace with the message you want to send
-
+                        onTap: () async {
+                          String text = "Привет, мне нужна помощь?!";
                           String url =
-                              'https://wa.me/$phoneNumber/?text=${Uri.parse(message)}';
-                          launchUrl(Uri.parse(url));
+                              "https://wa.me/87755296850text=${Uri.encodeFull(text)}";
+                          if (await canLaunchUrl(Uri.parse(url))) {
+                            await launchUrl(Uri.parse(url),
+                                mode: LaunchMode.externalApplication);
+                          }
                         },
                         child: CircleAvatar(
                           radius: 40,

@@ -6,12 +6,16 @@ import 'package:diploma_work/utils/utils.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting('ru_RU');
   await Firebase.initializeApp();
-  Stripe.publishableKey = "pk_test_51NAFQgCj3VTzPnlvVYaDDRkUHhLcVTB5J7DjsIgWwjs5UNivfxMzV5VZekmgXEbxe1mnSqXULQPvTrxgWW0U1wSC00Xy3VKloO";
+  final fcmToken = await FirebaseMessaging.instance.getToken();
+  print(fcmToken);
+  Stripe.publishableKey =
+      "pk_test_51NAFQgCj3VTzPnlvVYaDDRkUHhLcVTB5J7DjsIgWwjs5UNivfxMzV5VZekmgXEbxe1mnSqXULQPvTrxgWW0U1wSC00Xy3VKloO";
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<AvatarProvider>(

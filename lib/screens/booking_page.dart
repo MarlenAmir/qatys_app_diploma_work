@@ -152,37 +152,36 @@ class BookingPage extends StatelessWidget {
                                 fontWeight: FontWeight.normal,
                                 color: Colors.black),
                           ),
+                        
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: Color(0xFF646AFF),
+                            ),
+                            width: 340,
+                            height: 40,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        BookingDialog(firebaseData),
+                                  ),
+                                );
+                              },
+                              child: Center(
+                                  child: Text(
+                                'Выбрать дату',
+                                style: GoogleFonts.montserrat(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              )),
+                            ),
+                          ),
                         ],
                       ),
                     ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: Color(0xFF646AFF),
-                  ),
-                  width: 340,
-                  height: 40,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>  BookingDialog(firebaseData),
-                        ),
-                      );
-                    },
-                    child: Center(
-                        child: Text(
-                      'Выбрать дату',
-                      style: GoogleFonts.montserrat(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    )),
                   ),
                 ),
               ],

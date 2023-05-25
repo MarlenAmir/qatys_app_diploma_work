@@ -45,7 +45,7 @@ dependencies:
   video_player: ^2.6.0
   location: ^4.4.0
   youtube_player_flutter: ^8.1.2
-  url_launcher: ^6.1.10
+  url_launcher: ^6.1.11
   google_fonts: ^4.0.3
   flutter_datetime_picker: ^1.5.1
   google_sign_in: ^6.1.0
@@ -61,6 +61,7 @@ dependencies:
   flutter_stripe: ^9.2.0
   http: ^0.13.6
   shimmer: ^3.0.0
+  firebase_messaging: ^14.6.1
     
 
 dev_dependencies:

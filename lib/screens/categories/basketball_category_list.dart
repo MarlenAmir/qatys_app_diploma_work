@@ -32,13 +32,13 @@ class _basketballCategoryState extends State<basketballCategory> {
                 case ConnectionState.waiting:
                   return SingleChildScrollView(
                   scrollDirection: Axis.vertical,
-                  child: Shimmer.fromColors(
-                    baseColor: Colors.grey[300]!,
-                    highlightColor: Colors.grey[100]!,
-                    child: Column(
-                      children: List.generate(
-                        5, // Adjust the number of shimmering items as needed
-                        (index) => Container(
+                  child: Column(
+                    children: List.generate(
+                      5, // Adjust the number of shimmering items as needed
+                      (index) => Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        child: Container(
                           width: double.infinity,
                           margin: const EdgeInsets.all(20),
                           decoration: BoxDecoration(
@@ -122,7 +122,9 @@ class _basketballCategoryState extends State<basketballCategory> {
                                       topRight: Radius.circular(10)),
                                   child: Image.network(
                                     data['image_url'],
-                                    width: 300,
+                                    width: double.infinity,
+                                    height: 250,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
@@ -130,28 +132,32 @@ class _basketballCategoryState extends State<basketballCategory> {
                                 height: 10,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                Expanded(
+                                  child: Text(
                                     data['name'],
                                     style: GoogleFonts.montserrat(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
                                   ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Image.asset(
+                                ),
+                                SizedBox(width: 5),
+                                Container(
+                                  margin: EdgeInsets.only(right: 20),
+                                  child: Image.asset(
                                     'images/check.png',
                                     height: 20,
                                     width: 20,
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
+                            ),
                               SizedBox(
                                 height: 10,
                               ),

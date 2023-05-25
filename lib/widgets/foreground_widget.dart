@@ -31,13 +31,13 @@ class _ForegroundWidgetState extends State<ForegroundWidget> {
               case ConnectionState.waiting:
                 return SingleChildScrollView(
                   scrollDirection: Axis.vertical,
-                  child: Shimmer.fromColors(
-                    baseColor: Colors.grey[300]!,
-                    highlightColor: Colors.grey[100]!,
-                    child: Column(
-                      children: List.generate(
-                        5, // Adjust the number of shimmering items as needed
-                        (index) => Container(
+                  child: Column(
+                    children: List.generate(
+                      5, // Adjust the number of shimmering items as needed
+                      (index) => Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        child: Container(
                           width: double.infinity,
                           margin: const EdgeInsets.all(20),
                           decoration: BoxDecoration(
@@ -147,20 +147,24 @@ class _ForegroundWidgetState extends State<ForegroundWidget> {
                                 const SizedBox(
                                   width: 20,
                                 ),
-                                Text(
-                                  data['name'],
-                                  style: GoogleFonts.montserrat(
+                                Expanded(
+                                  child: Text(
+                                    data['name'],
+                                    style: GoogleFonts.montserrat(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.black),
+                                      color: Colors.black,
+                                    ),
+                                  ),
                                 ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Image.asset(
-                                  'images/check.png',
-                                  height: 20,
-                                  width: 20,
+                                SizedBox(width: 5),
+                                Container(
+                                  margin: EdgeInsets.only(right: 20),
+                                  child: Image.asset(
+                                    'images/check.png',
+                                    height: 20,
+                                    width: 20,
+                                  ),
                                 ),
                               ],
                             ),

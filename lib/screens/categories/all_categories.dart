@@ -79,25 +79,7 @@ class _allCategoriesState extends State<allCategories> {
                   backgroundImage: AssetImage('images/emoji.png'),
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Привет, ${name}",
-                    style: GoogleFonts.montserrat(
-                        color: Colors.black,
-                        fontSize: 12,
-                        fontWeight: FontWeight.normal),
-                  ),
-                  Text(
-                    _currentDate,
-                    style: GoogleFonts.montserrat(
-                        color: Colors.black,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
+             
               SizedBox(
                 width: 120,
               ),

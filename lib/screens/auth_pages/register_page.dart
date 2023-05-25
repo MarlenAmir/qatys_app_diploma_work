@@ -13,10 +13,22 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   bool _isObscure = true;
 
+  TextEditingController emailTextInputController = TextEditingController();
+  TextEditingController passwordTextInputController = TextEditingController();
+  TextEditingController phoneTextController = TextEditingController();
+  TextEditingController nameTextController = TextEditingController();
+  TextEditingController surnameTextController = TextEditingController();
+
+  late RegisterService registerService = RegisterService(
+      context: context,
+      emailTextInputController: emailTextInputController,
+      passwordTextInputController: passwordTextInputController,
+      nameTextController: nameTextController,
+      surnameTextController: surnameTextController,
+      phoneTextController: phoneTextController);
 
   @override
   Widget build(BuildContext context) {
-    RegisterService registerService = RegisterService(context);
     return Form(
       key: registerService.formKey,
       child: Scaffold(
@@ -73,7 +85,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     validator: (value) => value != null && value.length < 2
                         ? "Минимум 2 символов"
                         : null,
-                    controller: registerService.nameTextController,
+                    controller: nameTextController,
                     maxLines: 1,
                     minLines: 1,
                     decoration: const InputDecoration(
@@ -88,7 +100,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: TextFormField(
                     validator: (value) =>
                         value != null && value.length < 2 ? "2 символа" : null,
-                    controller: registerService.surnameTextController,
+                    controller: surnameTextController,
                     maxLines: 1,
                     minLines: 1,
                     decoration: const InputDecoration(
@@ -105,7 +117,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         email != null && !EmailValidator.validate(email)
                             ? "Введите правильный E-mail"
                             : null,
-                    controller: registerService.emailTextInputController,
+                    controller: emailTextInputController,
                     keyboardType: TextInputType.emailAddress,
                     maxLines: 1,
                     minLines: 1,
@@ -124,7 +136,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     validator: (value) => value != null && value.length < 11
                         ? "Минимум 11 символов"
                         : null,
-                    controller: registerService.phoneTextController,
+                    controller: phoneTextController,
                     maxLines: 1,
                     minLines: 1,
                     decoration: const InputDecoration(
@@ -137,10 +149,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(
                   width: 370,
                   child: TextFormField(
-                    validator: (value) => value != null && value.length < 6
-                        ? "Минимум 6 символов"
+                    validator: (value) => value != null && value.length < 8
+                        ? "Минимум 8 символов"
                         : null,
-                    controller: registerService.passwordTextInputController,
+                    controller: passwordTextInputController,
                     obscureText: _isObscure,
                     maxLines: 1,
                     minLines: 1,
@@ -154,8 +166,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               _isObscure = !_isObscure;
                             });
                           }),
-                      border: const OutlineInputBorder(),
-                      labelText: "Пароль",
+                      border: OutlineInputBorder(),
+                      labelText: "Password",
                     ),
                   ),
                 ),

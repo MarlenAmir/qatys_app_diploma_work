@@ -1,3 +1,4 @@
+import 'package:diploma_work/screens/profile_change_page.dart';
 import 'package:flutter/material.dart';
 import 'package:diploma_work/widgets/view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -57,7 +58,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 const SizedBox(
                   width: 10,
                 ),
-                
               ],
             ),
           ),
@@ -175,9 +175,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       Text(
                         email,
                         style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.normal,
-                            fontSize: 14,
-                            color: Colors.black.withOpacity(0.5)),
+                          fontWeight: FontWeight.normal,
+                          fontSize: 14,
+                          color: Colors.black.withOpacity(0.5),
+                        ),
                       ),
                     ],
                   ),
@@ -185,8 +186,24 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             ),
           ),
+          TextButton(
+                  onPressed: () {
+                     Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfileChangePage()),
+              );
+                  },
+                  child: Text(
+                    'Изменить данные',
+                    style: GoogleFonts.montserrat(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 14,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
           TextButton(
             onPressed: () async {
