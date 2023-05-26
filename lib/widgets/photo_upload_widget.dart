@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
-import '../screens/repository/image_provider/user_provider.dart';
+import '../screens/provider/image_provider/user_provider.dart';
 
 
 

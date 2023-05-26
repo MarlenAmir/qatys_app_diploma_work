@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
-import 'package:diploma_work/screens/repository/image_provider/user_provider.dart';
+import 'package:diploma_work/screens/provider/image_provider/user_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

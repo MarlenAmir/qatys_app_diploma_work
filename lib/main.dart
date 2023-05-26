@@ -1,5 +1,5 @@
 import 'package:diploma_work/routes/routes.dart';
-import 'package:diploma_work/screens/repository/image_provider/user_provider.dart';
+import 'package:diploma_work/screens/provider/image_provider/user_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:diploma_work/utils/utils.dart';

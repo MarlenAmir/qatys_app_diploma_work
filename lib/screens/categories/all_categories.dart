@@ -54,144 +54,77 @@ class _allCategoriesState extends State<allCategories> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        
-        children: [
-           SizedBox(
-            height: 30,
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            child: IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.black,),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ),
-          Row(
-            children: [
-              Container(
-                margin: EdgeInsets.all(20),
-                child: CircleAvatar(
-                  radius: 20,
-                  backgroundImage: AssetImage('images/emoji.png'),
-                ),
-              ),
-             
-              SizedBox(
-                width: 120,
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: Image.asset('images/bell.png'),
-                ),
-              )
-            ],
-          ),
-          Divider(
-            thickness: 0.8,
-            color: Colors.black,
-            endIndent: 0,
-            indent: 0,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 20),
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'По категориям',
-              style: GoogleFonts.montserrat(
-                  fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => footballCategory(),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    width: 120,
-                    height: 125,
-                    margin: const EdgeInsets.only(
-                      top: 20,
-                      left: 20,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF9E00FF),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 5),
-                        SizedBox(
-                          width: 80,
-                          child: Text(
-                            'Футбольные площадки',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.montserrat(
-                                fontSize: 12,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.white),
-                          ),
-                        ),
-                        const Divider(
-                          color: Colors.white,
-                          thickness: 1,
-                          endIndent: 0,
-                          indent: 0,
-                        ),
-                        SizedBox(
-                          width: 69,
-                          height: 69,
-                          child: Image.asset('images/football.png'),
-                        ),
-                      ],
-                    ),
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          
+          children: [
+           
+            Row(
+              children: [
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back, color: Colors.black,),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                   ),
                 ),
+                Container(
+                  alignment: Alignment.center,
+                  child: Text("Все категории", style: GoogleFonts.montserrat(
+                      fontSize: 22, fontWeight: FontWeight.bold),),
+                ),
+              ],
+            ),
+            Divider(
+              thickness: 0.8,
+              color: Colors.black,
+              endIndent: 0,
+              indent: 0,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 20),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'По категориям',
+                style: GoogleFonts.montserrat(
+                    fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => basketballCategory(),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    width: 120,
-                    height: 125,
-                    margin:const  EdgeInsets.only(
-                      top: 20,
-                      left: 20,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFF7C821),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => footballCategory(),
+                        ),
+                      );
+                    },
                     child: Container(
+                      width: 120,
+                      height: 125,
+                      margin: const EdgeInsets.only(
+                        top: 20,
+                        left: 20,
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF9E00FF),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                       child: Column(
                         children: [
                           const SizedBox(height: 5),
                           SizedBox(
-                            width: 100,
+                            width: 80,
                             child: Text(
-                              'Баскетбольные площадки',
+                              'Футбольные площадки',
                               textAlign: TextAlign.center,
                               style: GoogleFonts.montserrat(
                                   fontSize: 12,
@@ -205,238 +138,290 @@ class _allCategoriesState extends State<allCategories> {
                             endIndent: 0,
                             indent: 0,
                           ),
-                          const SizedBox(height: 5),
                           SizedBox(
-                            width: 60,
-                            height: 60,
-                            child: Image.asset('images/basketball.png'),
+                            width: 69,
+                            height: 69,
+                            child: Image.asset('images/football.png'),
                           ),
                         ],
                       ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => volleyballCategory(),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => basketballCategory(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: 120,
+                      height: 125,
+                      margin:const  EdgeInsets.only(
+                        top: 20,
+                        left: 20,
                       ),
-                    );
-                  },
-                  child: Container(
-                    width: 120,
-                    height: 125,
-                    margin: const EdgeInsets.only(
-                      top: 20,
-                      left: 20,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF3892C5),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 5),
-                        SizedBox(
-                          width: 105,
-                          child: Text(
-                            'Воллейбольные площадки',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.montserrat(
-                                fontSize: 12,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.white),
-                          ),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFF7C821),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Container(
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 5),
+                            SizedBox(
+                              width: 100,
+                              child: Text(
+                                'Баскетбольные площадки',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.montserrat(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.white),
+                              ),
+                            ),
+                            const Divider(
+                              color: Colors.white,
+                              thickness: 1,
+                              endIndent: 0,
+                              indent: 0,
+                            ),
+                            const SizedBox(height: 5),
+                            SizedBox(
+                              width: 60,
+                              height: 60,
+                              child: Image.asset('images/basketball.png'),
+                            ),
+                          ],
                         ),
-                        const Divider(
-                          color: Colors.white,
-                          thickness: 1,
-                          endIndent: 0,
-                          indent: 0,
-                        ),
-                        SizedBox(
-                          child: Image.asset('images/volleyball.png'),
-                          width: 60,
-                          height: 60,
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => TennisCategory(),
+                const SizedBox(
+                  width: 20,
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => volleyballCategory(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: 120,
+                      height: 125,
+                      margin: const EdgeInsets.only(
+                        top: 20,
+                        left: 20,
                       ),
-                    );
-                  },
-                  child: Container(
-                    width: 120,
-                    height: 125,
-                    margin: const EdgeInsets.only(
-                      top: 20,
-                      left: 20,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFF8F8F),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 5),
-                        SizedBox(
-                          width: 100,
-                          child: Text(
-                            'Теннисные площадки',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.montserrat(
-                                fontSize: 12,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.white),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF3892C5),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 5),
+                          SizedBox(
+                            width: 105,
+                            child: Text(
+                              'Воллейбольные площадки',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.white),
+                            ),
                           ),
-                        ),
-                        const Divider(
-                          color: Colors.white,
-                          thickness: 1,
-                          endIndent: 0,
-                          indent: 0,
-                        ),
-                        SizedBox(
-                          width: 60,
-                          height: 60,
-                          child: Image.asset('images/tennis.png'),
-                        ),
-                      ],
+                          const Divider(
+                            color: Colors.white,
+                            thickness: 1,
+                            endIndent: 0,
+                            indent: 0,
+                          ),
+                          SizedBox(
+                            child: Image.asset('images/volleyball.png'),
+                            width: 60,
+                            height: 60,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => hockeyCategory(),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => TennisCategory(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: 120,
+                      height: 125,
+                      margin: const EdgeInsets.only(
+                        top: 20,
+                        left: 20,
                       ),
-                    );
-                  },
-                  child: Container(
-                    width: 120,
-                    height: 125,
-                    margin:const EdgeInsets.only(
-                      top: 20,
-                      left: 20,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF3EE07F),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 5),
-                        SizedBox(
-                          width: 100,
-                          child: Text(
-                            'Хоккейные площадки',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.montserrat(
-                                fontSize: 12,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.white),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFF8F8F),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 5),
+                          SizedBox(
+                            width: 100,
+                            child: Text(
+                              'Теннисные площадки',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.white),
+                            ),
                           ),
-                        ),
-                        const Divider(
-                          color: Colors.white,
-                          thickness: 1,
-                          endIndent: 0,
-                          indent: 0,
-                        ),
-                        SizedBox(
-                          width: 69,
-                          height: 69,
-                          child: Image.asset('images/hockey.png'),
-                        ),
-                      ],
+                          const Divider(
+                            color: Colors.white,
+                            thickness: 1,
+                            endIndent: 0,
+                            indent: 0,
+                          ),
+                          SizedBox(
+                            width: 60,
+                            height: 60,
+                            child: Image.asset('images/tennis.png'),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => tableTennisCategory(),
+                const SizedBox(
+                  width: 20,
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => hockeyCategory(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: 120,
+                      height: 125,
+                      margin:const EdgeInsets.only(
+                        top: 20,
+                        left: 20,
                       ),
-                    );
-                  },
-                  child: Container(
-                    width: 120,
-                    height: 125,
-                    margin: const EdgeInsets.only(
-                      top: 20,
-                      left: 20,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF9E00FF),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 5),
-                        SizedBox(
-                          width: 100,
-                          child: Text(
-                            'Настольные площадки',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.montserrat(
-                                fontSize: 12,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.white),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF3EE07F),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 5),
+                          SizedBox(
+                            width: 100,
+                            child: Text(
+                              'Хоккейные площадки',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.white),
+                            ),
                           ),
-                        ),
-                        const Divider(
-                          color: Colors.white,
-                          thickness: 1,
-                          endIndent: 0,
-                          indent: 0,
-                        ),
-                        SizedBox(
-                          width: 69,
-                          height: 69,
-                          child: Image.asset('images/table-tennis.png'),
-                        ),
-                      ],
+                          const Divider(
+                            color: Colors.white,
+                            thickness: 1,
+                            endIndent: 0,
+                            indent: 0,
+                          ),
+                          SizedBox(
+                            width: 69,
+                            height: 69,
+                            child: Image.asset('images/hockey.png'),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-            ],
-          ),
-        ],
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => tableTennisCategory(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: 120,
+                      height: 125,
+                      margin: const EdgeInsets.only(
+                        top: 20,
+                        left: 20,
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF9E00FF),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 5),
+                          SizedBox(
+                            width: 100,
+                            child: Text(
+                              'Настольные площадки',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          const Divider(
+                            color: Colors.white,
+                            thickness: 1,
+                            endIndent: 0,
+                            indent: 0,
+                          ),
+                          SizedBox(
+                            width: 69,
+                            height: 69,
+                            child: Image.asset('images/table-tennis.png'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
