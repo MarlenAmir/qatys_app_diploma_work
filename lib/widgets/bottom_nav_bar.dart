@@ -5,60 +5,64 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({super.key});
+  const BottomNavBar({Key? key}) : super(key: key);
+
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
+  int _selectedIndex = 0;
+   final List <Widget> _pages = [
+    HomePage(),
+    SearchPage(),
+    ProfilePage(),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return GNav(
-      gap: 20,
-      tabs: [
-        GButton(
-          icon: Icons.home,
-          text: 'Home',
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => HomePage(),
+    return Scaffold(
+        body: _pages[_selectedIndex],
+        bottomNavigationBar: Container(
+          decoration: const BoxDecoration(color: Colors.white, boxShadow: [
+            BoxShadow(blurRadius: 20),
+          ]),
+          child: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+              child: GNav(
+                gap: 8,
+                activeColor: Colors.white,
+                iconSize: 24,
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                duration: Duration(milliseconds: 800),
+                tabBackgroundColor: Colors.blue,
+                tabs: const [
+                  GButton(
+                    icon: Icons.home,
+                    text: 'Home',
+                  ),
+                  GButton(
+                    icon: Icons.search,
+                    text: 'Search',
+                  ),
+                  GButton(
+                    icon: Icons.settings,
+                    text: 'Settings',
+                  ),
+                ],
+                selectedIndex: _selectedIndex,
+                onTabChange: (index) {
+                  setState(() {
+                    _selectedIndex = index;
+                  });
+                },
               ),
-            );
-          },
+            ),
+          ),
         ),
-        GButton(
-          icon: Icons.search,
-          text: 'Search',
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => SearchPage(),
-              ),
-            );
-          },
-        ),
-        GButton(
-          icon: Icons.chat_bubble_outline_rounded,
-          text: 'Chat',
-          onPressed: () {
-            _showModalBottomSheet(context);
-          },
-        ),
-        GButton(
-          icon: Icons.settings,
-          text: 'Settings',
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => ProfilePage(),
-              ),
-            );
-          },
-        ),
-      ],
-    );
+      );
   }
 }
 
@@ -114,8 +118,6 @@ GNav(
  */
 
 void _showModalBottomSheet(BuildContext context) {
-
-
   showModalBottomSheet(
       context: context,
       builder: (context) {
