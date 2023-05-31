@@ -2,30 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:diploma_work/widgets/view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+final List<String> videoIds = [
+  'yuli9QzU1aI',
+  'MLfaH-lDmdY',
+  'G0QjxTR_XPc',
+  'sNKOh0bRMyk',
+  'NWGXKNwy8pg',
+  'icEfi4MVLVg',
+  '8hjR6jgtqfM',
+  'XkKMZXwh9m8',
+  'GfSzsJIgr1o',
+  'bUCNQqa8p3E',
+];
 
- final List<String> videoIds = [
-    'yuli9QzU1aI',
-    'MLfaH-lDmdY',
-    'G0QjxTR_XPc',
-    'sNKOh0bRMyk',
-    'NWGXKNwy8pg',
-    'icEfi4MVLVg',
-    '8hjR6jgtqfM',
-    'XkKMZXwh9m8',
-    'GfSzsJIgr1o',
-    'bUCNQqa8p3E',
-  ];
-
-  final List<String> videoTitles = ['10 ЛЕГКИХ НАВЫКОВ ОБЫГРАТЬ В ФУТБОЛЕ. Обучение финтам CR7',
-    '5 ПРОСТЫХ ФИНТОВ, ЧТОБЫ УДИВЛЯТЬ ЗАЩИТНИКОВ! Обучение финтам футболистов',
-    'Секрет ИДЕАЛЬНОГО УДАРА с Андреем Тихоновым! ОБУЧЕНИЕ ПЛАССЕРУ',
-    'Обучение сильному удару. КАК БИТЬ ПУШКОЙ? // POWER SHOT TUTORIAL',
-    'Обучение крученому удару | Curve tutorial. Bend it like Beckham',
-    'Обучение эффектным финтам!',
-    'Обучение удару Наклбол | Knuckleball tutorial',
-    'КАК РЕБЁНКУ НАУЧИТЬСЯ БИТЬ ПУШКОЙ?',
-    'НЕ ПОВТОРЯЙ ЭТИ ОШИБКИ В ФУТБОЛЕ.',
-    'Как бить по мячу подъёмом сильно и точно?',];
+final List<String> videoTitles = [
+  '10 ЛЕГКИХ НАВЫКОВ ОБЫГРАТЬ В ФУТБОЛЕ. Обучение финтам CR7',
+  '5 ПРОСТЫХ ФИНТОВ, ЧТОБЫ УДИВЛЯТЬ ЗАЩИТНИКОВ! Обучение финтам футболистов',
+  'Секрет ИДЕАЛЬНОГО УДАРА с Андреем Тихоновым! ОБУЧЕНИЕ ПЛАССЕРУ',
+  'Обучение сильному удару. КАК БИТЬ ПУШКОЙ? // POWER SHOT TUTORIAL',
+  'Обучение крученому удару | Curve tutorial. Bend it like Beckham',
+  'Обучение эффектным финтам!',
+  'Обучение удару Наклбол | Knuckleball tutorial',
+  'КАК РЕБЁНКУ НАУЧИТЬСЯ БИТЬ ПУШКОЙ?',
+  'НЕ ПОВТОРЯЙ ЭТИ ОШИБКИ В ФУТБОЛЕ.',
+  'Как бить по мячу подъёмом сильно и точно?',
+];
 
 class VideoPage extends StatefulWidget {
   const VideoPage({super.key});
@@ -44,8 +45,17 @@ class _VideoPageState extends State<VideoPage> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(
-                  height: 20,
+                Container(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: Colors.black,
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
                 ),
                 SizedBox(
                   width: double.infinity,
@@ -81,7 +91,7 @@ class _VideoPageState extends State<VideoPage> {
                       Container(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Lorem ipsum dolor sit amet, c venenatis. Dl ultrices libero gravida id. Suspendisse aliquam a ligula et egestas. Vestibulum lobortis nisi non mi rutrum, id dapibus justo pretium. Suspendisse potenti. Praesent vel blandit nibh. Vestibulum sit amet neque quis magna aliquam cursus. Phasellus dolor quam, blandit sit amet pellentesque ac, venenatis vitae lectus. Integer euismod id lacus eu tempus. Suspendisse lobortis eleifend nunc.',
+                          'Добро пожаловать в нашу футбольную программу! Наша цель - помочь вам развить свои футбольные навыки, улучшить физическую форму и достичь своих спортивных целей. Ваше участие в этой программе открывает двери к волнующему миру футбола, где мы вместе будем расти, учиться и добиваться успеха. Программа состоит из разнообразных тренировок, которые включают в себя технические упражнения, физическую подготовку, тактические аспекты игры и многое другое. Мы стремимся обеспечить вам полноценный и разносторонний подход к тренировкам, чтобы вы могли стать лучшими игроками и наслаждаться игрой на полную мощность.',
                           style: GoogleFonts.montserrat(
                               fontSize: 14,
                               fontWeight: FontWeight.normal,

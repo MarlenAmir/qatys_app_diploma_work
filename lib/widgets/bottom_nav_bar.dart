@@ -1,11 +1,11 @@
 import 'package:diploma_work/screens/main_pages/view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({Key? key}) : super(key: key);
 
 
   @override
@@ -13,56 +13,52 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int _selectedIndex = 0;
-   final List <Widget> _pages = [
-    HomePage(),
-    SearchPage(),
-    ProfilePage(),
-  ];
+
+  
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: _pages[_selectedIndex],
-        bottomNavigationBar: Container(
-          decoration: const BoxDecoration(color: Colors.white, boxShadow: [
-            BoxShadow(blurRadius: 20),
-          ]),
-          child: SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-              child: GNav(
-                gap: 8,
-                activeColor: Colors.white,
-                iconSize: 24,
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                duration: Duration(milliseconds: 800),
-                tabBackgroundColor: Colors.blue,
-                tabs: const [
-                  GButton(
-                    icon: Icons.home,
-                    text: 'Home',
-                  ),
-                  GButton(
-                    icon: Icons.search,
-                    text: 'Search',
-                  ),
-                  GButton(
-                    icon: Icons.settings,
-                    text: 'Settings',
-                  ),
-                ],
-                selectedIndex: _selectedIndex,
-                onTabChange: (index) {
-                  setState(() {
-                    _selectedIndex = index;
-                  });
-                },
+    return GNav(
+      gap: 20,
+      tabs: [
+        GButton(
+          icon: CupertinoIcons.home,
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => HomePage(),
               ),
-            ),
-          ),
+            );
+          },
         ),
-      );
+        GButton(
+          icon: CupertinoIcons.search,
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => SearchPage(),
+              ),
+            );
+          },
+        ),
+        GButton(
+          icon: CupertinoIcons.chat_bubble,
+          onPressed: (){
+             _showModalBottomSheet(context);
+          },
+        ),
+        GButton(
+          icon: CupertinoIcons.profile_circled,
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => ProfilePage(),
+              ),
+            );
+          },
+        ),
+      ],
+    );
   }
 }
 
@@ -178,9 +174,7 @@ void _showModalBottomSheet(BuildContext context) {
                     children: [
                       InkWell(
                         onTap: () async {
-                          
-                          String url =
-                              "https://t.me/Marlen7";
+                          String url = "https://t.me/Marlen7";
                           if (await canLaunchUrl(Uri.parse(url))) {
                             await launchUrl(Uri.parse(url),
                                 mode: LaunchMode.externalApplication);
@@ -212,7 +206,7 @@ void _showModalBottomSheet(BuildContext context) {
                         onTap: () async {
                           String text = "Привет, мне нужна помощь?!";
                           String url =
-                              "https://wa.me/87755296850text=${Uri.encodeFull(text)}";
+                              "https://wa.me/77755296850text=${Uri.encodeFull(text)}";
                           if (await canLaunchUrl(Uri.parse(url))) {
                             await launchUrl(Uri.parse(url),
                                 mode: LaunchMode.externalApplication);

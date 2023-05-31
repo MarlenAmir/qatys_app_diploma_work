@@ -16,7 +16,7 @@ class PaymentService{
         testEnv: true,
       );
       await Stripe.instance.initPaymentSheet(
-          paymentSheetParameters: SetupPaymentSheetParameters(
+        paymentSheetParameters: SetupPaymentSheetParameters(
         paymentIntentClientSecret: paymentIntent!["client_secret"],
         style: ThemeMode.light,
         merchantDisplayName: "Sabir",

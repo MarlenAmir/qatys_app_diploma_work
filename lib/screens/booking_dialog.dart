@@ -6,6 +6,9 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../model/firebase_data.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+
+
 
 class BookingDialog extends StatefulWidget {
   BookingDialog(this.firebaseData);
@@ -18,6 +21,12 @@ class BookingDialog extends StatefulWidget {
 class _BookingDialogState extends State<BookingDialog> {
   PaymentService paymentService = PaymentService();
 
+  String formatDate(DateTime date) {
+  final formatter = DateFormat('d MMMM y', 'ru');
+  return formatter.format(date);
+}
+
+  
   late DateTime _selectedDate;
   late TimeOfDay _startTime;
   late TimeOfDay _endTime;
@@ -31,9 +40,9 @@ class _BookingDialogState extends State<BookingDialog> {
     _selectedDate = DateTime.now();
     _startTime = TimeOfDay.now();
     _endTime = TimeOfDay.now();
-    loadData();
     User? user = FirebaseAuth.instance.currentUser;
     _userId = user!.uid;
+    loadData();
   }
 
   void _selectDate(DateTime date) {
@@ -79,6 +88,7 @@ class _BookingDialogState extends State<BookingDialog> {
         setState(() {
           name = snapshot.get('name');
           phoneNumber = snapshot.get('phone_number');
+          _selectedDate = snapshot.get('selectedDay').toDate();
         });
       }
     } catch (e) {
@@ -126,44 +136,118 @@ class _BookingDialogState extends State<BookingDialog> {
                 return isSameDay(day, _selectedDate);
               },
             ),
-            ListTile(
-              title: Text('Выберите время начала'),
-              trailing: Text(_startTime.format(context)),
-              onTap: () {
-                DatePicker.showTimePicker(
-                  locale: LocaleType.ru,
-                  context,
-                  currentTime: DateTime.now(),
-                  showSecondsColumn: false,
-                  onConfirm: (time) =>
-                      _selectStartTime(TimeOfDay.fromDateTime(time)),
-                );
-              },
+            SizedBox(height:5),
+            Container(
+              decoration: BoxDecoration(
+                color: Color(0xFFF7C821),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Column(
+                children: [
+                  ListTile(
+                    title: Text(
+                      'Выберите время начала',
+                      style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    trailing: Text(_startTime.format(context)),
+                    onTap: () {
+                      DatePicker.showTimePicker(
+                        locale: LocaleType.ru,
+                        context,
+                        currentTime: DateTime.now(),
+                        showSecondsColumn: false,
+                        onConfirm: (time) =>
+                            _selectStartTime(TimeOfDay.fromDateTime(time)),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    title: Text(
+                      'Выберите время конца',
+                      style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    trailing: Text(_endTime.format(context)),
+                    onTap: () {
+                      DatePicker.showTimePicker(
+                        context,
+                        currentTime: DateTime.now(),
+                        showSecondsColumn: false,
+                        onConfirm: (time) => _selectEndTime(
+                          TimeOfDay.fromDateTime(time),
+                        ),
+            
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
-            ListTile(
-              title: Text('Выберите время конца'),
-              trailing: Text(_endTime.format(context)),
-              onTap: () {
-                DatePicker.showTimePicker(
-                  context,
-                  currentTime: DateTime.now(),
-                  showSecondsColumn: false,
-                  onConfirm: (time) =>
-                      _selectEndTime(TimeOfDay.fromDateTime(time)),
-                );
-              },
+            SizedBox(
+              height: 5,
             ),
-            ListTile(
-              title: Text('Поле :'),
-              trailing: Text(widget.firebaseData.name),
-            ),
-            ListTile(
-              title: Text('Имя :'),
-              trailing: Text(name),
-            ),
-            ListTile(
-              title: Text('Номер :'),
-              trailing: Text(phoneNumber),
+            Container(
+              decoration: BoxDecoration(
+                color: Color(0xFF3892C5),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Column(
+                children: [
+                  ListTile(
+                    title: Text(
+                      'Поле :',
+                      style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    trailing: Text(
+                      widget.firebaseData.name,
+                      style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
+                  ListTile(
+                    title: Text(
+                      'Имя :',
+                      style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    trailing: Text(
+                      name,
+                      style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
+                  ListTile(
+                    title: Text(
+                      'Номер :',
+                      style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    trailing: Text(
+                      phoneNumber,
+                      style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
             ),
             Spacer(),
             Container(
@@ -173,7 +257,7 @@ class _BookingDialogState extends State<BookingDialog> {
               ),
               width: 340,
               height: 40,
-              child: ElevatedButton(
+              child: TextButton(
                 onPressed: () async {
                   if (_selectedDate != null &&
                       _startTime != null &&
@@ -181,8 +265,8 @@ class _BookingDialogState extends State<BookingDialog> {
                     paymentService.makePayment();
                     final FirebaseFirestore firestore =
                         FirebaseFirestore.instance;
-                    await firestore.collection('bookings').doc(_userId).set({
-                      'SelectedDay': _selectedDate,
+                    await firestore.collection('bookings').doc(_userId).collection('user_bookings').add({
+                      'SelectedDay': formatDate(_selectedDate),
                       'startDate':
                           '${_startTime.hour.toString().padLeft(2, '0')}:${_startTime.minute.toString().padLeft(2, '0')}',
                       'endDate':
@@ -190,31 +274,38 @@ class _BookingDialogState extends State<BookingDialog> {
                       'foregroundName': widget.firebaseData.name,
                       'name': name,
                       'phoneNumber': phoneNumber,
+                      'location': widget.firebaseData.location,
                     });
                   } else {
                     print('Please select all values');
                   }
                   showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    Future.delayed(Duration(seconds: 3), () {
-                      Navigator.of(context).pop();
-                    });
+                    context: context,
+                    builder: (BuildContext context) {
+                      Future.delayed(Duration(seconds: 3), () {
+                        Navigator.of(context).pop();
+                      });
 
-                    return AlertDialog(
-                      title: Text('Успешно!', style: GoogleFonts.montserrat(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16,
-                        color: Colors.black.withOpacity(0.5),
-                      ),),
-                      content: Text('Данные успешно сохранены.', style: GoogleFonts.montserrat(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 14,
-                        color: Colors.black.withOpacity(0.5),
-                      ),),
-                    );
-                  },
-                );     
+                      return AlertDialog(
+                        title: Text(
+                          'Успешно!',
+                          style: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 16,
+                            color: Colors.black.withOpacity(0.5),
+                          ),
+                        ),
+                        content: Text(
+                          'Данные успешно сохранены.',
+                          style: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 14,
+                            color: Colors.black.withOpacity(0.5),
+                          ),
+                        ),
+                      );
+                    },
+                  );
                 },
                 child: Center(
                     child: Text(
@@ -226,7 +317,7 @@ class _BookingDialogState extends State<BookingDialog> {
                 )),
               ),
             ),
-            SizedBox(height:20),
+            SizedBox(height: 20),
           ],
         ),
       ),

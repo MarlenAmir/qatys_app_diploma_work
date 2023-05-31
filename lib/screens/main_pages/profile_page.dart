@@ -187,21 +187,21 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           TextButton(
-                  onPressed: () {
-                     Navigator.push(
+            onPressed: () {
+              Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => ProfileChangePage()),
               );
-                  },
-                  child: Text(
-                    'Изменить данные',
-                    style: GoogleFonts.montserrat(
-                      fontWeight: FontWeight.normal,
-                      fontSize: 14,
-                      color: Colors.blue,
-                    ),
-                  ),
-                ),
+            },
+            child: Text(
+              'Изменить данные',
+              style: GoogleFonts.montserrat(
+                fontWeight: FontWeight.normal,
+                fontSize: 14,
+                color: Colors.blue,
+              ),
+            ),
+          ),
           const SizedBox(
             height: 10,
           ),
@@ -310,7 +310,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ],
       ),
-      bottomNavigationBar:  BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

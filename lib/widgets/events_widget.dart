@@ -40,7 +40,7 @@ class _EventWidgetState extends State<EventWidget> {
                 children: [
                   const SizedBox(height: 5),
                   SizedBox(
-                    width: 80,
+                    width: 90,
                     child: Text(
                       'Футбольные площадки',
                       textAlign: TextAlign.center,
@@ -88,7 +88,7 @@ class _EventWidgetState extends State<EventWidget> {
                 children: [
                   const SizedBox(height: 5),
                   SizedBox(
-                    width: 100,
+                    width: 110,
                     child: Text(
                       'Баскетбольные площадки',
                       textAlign: TextAlign.center,
@@ -137,7 +137,7 @@ class _EventWidgetState extends State<EventWidget> {
                 children: [
                   const SizedBox(height: 5),
                   SizedBox(
-                    width: 105,
+                    width: 115,
                     child: Text(
                       'Воллейбольные площадки',
                       textAlign: TextAlign.center,

@@ -97,6 +97,7 @@ class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: GoogleMap(
         myLocationEnabled: true,
         markers: Set<Marker>.of(markers),

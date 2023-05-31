@@ -122,7 +122,7 @@ class _allCategoriesState extends State<allCategories> {
                         children: [
                           const SizedBox(height: 5),
                           SizedBox(
-                            width: 80,
+                            width: 100,
                             child: Text(
                               'Футбольные площадки',
                               textAlign: TextAlign.center,
@@ -173,7 +173,7 @@ class _allCategoriesState extends State<allCategories> {
                           children: [
                             const SizedBox(height: 5),
                             SizedBox(
-                              width: 100,
+                              width: 110,
                               child: Text(
                                 'Баскетбольные площадки',
                                 textAlign: TextAlign.center,
@@ -232,7 +232,7 @@ class _allCategoriesState extends State<allCategories> {
                         children: [
                           const SizedBox(height: 5),
                           SizedBox(
-                            width: 105,
+                            width: 120,
                             child: Text(
                               'Воллейбольные площадки',
                               textAlign: TextAlign.center,

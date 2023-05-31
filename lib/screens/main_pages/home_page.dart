@@ -98,18 +98,6 @@ class _HomePage extends State<HomePage> {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      width: 120,
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: Image.asset('images/bell.png'),
-                      ),
-                    )
                   ],
                 ),
                 SearchPanel(searchController: searchController),
@@ -123,10 +111,10 @@ class _HomePage extends State<HomePage> {
                   child: TextButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => TournamentWidget()));
+                            builder: (context) => BookingsWidget()));
                       },
                       child: Text(
-                        'Открытые турниры',
+                        'Мои бронирования',
                         style: GoogleFonts.montserrat(
                             color: Colors.white,
                             fontWeight: FontWeight.normal,
@@ -162,7 +150,7 @@ class _HomePage extends State<HomePage> {
           ],
         ),
       ),
-      bottomNavigationBar:  BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

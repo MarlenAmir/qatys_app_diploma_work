@@ -143,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                         builder: (context) => const ForgotPasswordPage()));
                   },
                   child: Text(
-                    'Forgot Password?',
+                    'Забыли пароль?',
                     style: GoogleFonts.montserrat(
                         color: Color(0xFF7D82FF),
                         fontWeight: FontWeight.bold,
@@ -151,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 Text(
-                  'OR',
+                  'ИЛИ',
                   style: GoogleFonts.montserrat(
                       fontSize: 10,
                       color: Color(0xFF9F9F9F),
@@ -182,7 +182,7 @@ class _LoginPageState extends State<LoginPage> {
                           width: 10,
                         ),
                         Text(
-                          'Login with Google',
+                          'Войти с помощью Google',
                           style: GoogleFonts.montserrat(
                               color: Color(0xFF9F9F9F),
                               fontSize: 20,
@@ -196,7 +196,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Don\'t have an account?',
+                      'Не зарегестрированы?',
                       style: GoogleFonts.montserrat(
                         fontSize: 16,
                         fontWeight: FontWeight.normal,
@@ -212,7 +212,7 @@ class _LoginPageState extends State<LoginPage> {
                           );
                         },
                         child: Text(
-                          'Register',
+                          'Регистрация',
                           style: GoogleFonts.montserrat(
                               color: Color(0xFF646AFF),
                               fontSize: 16,

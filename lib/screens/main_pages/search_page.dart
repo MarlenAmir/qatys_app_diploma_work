@@ -11,8 +11,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import 'package:diploma_work/screens/provider/image_provider/user_provider.dart';
 
-
-
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
 
@@ -78,7 +76,7 @@ class _SearchPageState extends State<SearchPage> {
                   children: [
                     Container(
                       margin: const EdgeInsets.all(20),
-                      child:  CircleAvatar(
+                      child: CircleAvatar(
                         radius: 20,
                         backgroundImage: imageUrl != null
                             ? NetworkImage(imageUrl) as ImageProvider<Object>
@@ -104,18 +102,7 @@ class _SearchPageState extends State<SearchPage> {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      width: 120,
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: Image.asset('images/bell.png'),
-                      ),
-                    )
+                    
                   ],
                 ),
                 SearchPanel(
@@ -238,7 +225,7 @@ class _SearchPageState extends State<SearchPage> {
           ],
         ),
       ),
-      bottomNavigationBar:  BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

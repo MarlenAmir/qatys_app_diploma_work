@@ -137,6 +137,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ? "Минимум 11 символов"
                         : null,
                     controller: phoneTextController,
+                    keyboardType: TextInputType.phone,
                     maxLines: 1,
                     minLines: 1,
                     decoration: const InputDecoration(
@@ -166,8 +167,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               _isObscure = !_isObscure;
                             });
                           }),
-                      border: OutlineInputBorder(),
-                      labelText: "Password",
+                      border: const OutlineInputBorder(),
+                      labelText: "Пароль",
                     ),
                   ),
                 ),
@@ -196,7 +197,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Joined us before?',
+                      'Вы были зарегестрированы?',
                       style: GoogleFonts.montserrat(
                         fontSize: 16,
                         fontWeight: FontWeight.normal,
@@ -208,7 +209,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           Navigator.pop(context);
                         },
                         child: Text(
-                          'Login',
+                          'Войти',
                           style: GoogleFonts.montserrat(
                               color: const Color(0xFF646AFF),
                               fontSize: 16,
